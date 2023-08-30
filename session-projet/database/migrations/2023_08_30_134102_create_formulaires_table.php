@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('formulaires', function (Blueprint $table) {
             $table->id();
-            $table->string('num,_superieur', 255);
-            $table->string('num_employe', 255);
+            $table->unsignedBigInteger('num_superieur');
+            $table->unsignedBigInteger('num_employe');
             $table->string('data', 255);
             $table->string('type_forms', 255);
+
+            $table->foreign('num_superieur')->references('id')->on('usagers');
+            $table->foreign('num_employe')->references('id')->on('usagers');
 
             $table->rememberToken();
             $table->timestamps();
