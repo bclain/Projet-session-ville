@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->string('data', 256);
+            $table->json('data', 2000);
+            $table->boolean('vu')->default(false);
 
             $table->foreign('id_user')->references('id')->on('usagers');
             $table->timestamps();

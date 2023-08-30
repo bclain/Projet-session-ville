@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formulaires', function (Blueprint $table) {
+        Schema::create('procedures', function (Blueprint $table) {
             $table->id();
-            $table->string('num_superieur', 255);
-            $table->string('num_employe', 255);
-            $table->json('data', 2000);
-            $table->string('type_forms', 255);
-
-            $table->rememberToken();
+            $table->string('nom', 256);
+            $table->string('liens', 2000);
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formulaires');
+        Schema::dropIfExists('procedures');
     }
 };
