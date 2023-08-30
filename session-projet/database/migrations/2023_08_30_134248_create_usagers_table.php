@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('usagers', function (Blueprint $table) {
             $table->id();
+            $table->string('nom', 255);
+            $table->string('nom_superieur', 255);
+            $table->string('position', 255);
+            $table->string('droit_employe', 255);
+            $table->string('droit_superieur', 255);
+            $table->string('droit_admin', 255);
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }
