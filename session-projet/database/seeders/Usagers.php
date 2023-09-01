@@ -50,7 +50,7 @@ class Usagers extends Seeder
             ],
             [               
                 'nom' => 'Alain Lizotte',
-                'num_superieur' => '1',
+                'num_superieur' => '',
                 'position' => 'Chef de service TP',
                 'droit_employe' => 'o',
                 'droit_superieur' => 'o',
@@ -58,6 +58,5 @@ class Usagers extends Seeder
             ],
             
         ]);
-        dd('Seeder is running');  
     }
 }
