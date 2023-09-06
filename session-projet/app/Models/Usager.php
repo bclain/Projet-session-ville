@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Usager extends Model
 {
     use HasFactory;
-    public function Usager()
-{
-    return $this->belongsTo(Usager::class);
+
+    protected $fillable = ['nom', 'num_superieur', 'position', 'droit_employe', 'droit_superieur', 'droit_admin'];
 }
-}
+

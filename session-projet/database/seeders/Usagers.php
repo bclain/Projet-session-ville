@@ -14,6 +14,7 @@ class Usagers extends Seeder
      */
     public function run(): void
     {
+        
         DB::table('usagers')->insert([
 
             [               
@@ -27,7 +28,7 @@ class Usagers extends Seeder
             ],
             [               
                 'nom' => 'Marc Pépin',
-                'num_superieur' => '2',
+                'num_superieur' => '3',
                 'position' => 'Journalier TP',
                 'droit_employe' => 'o',
                 'droit_superieur' => 'n',
@@ -36,7 +37,7 @@ class Usagers extends Seeder
             ],
             [               
                 'nom' => 'Jane Dow',
-                'num_superieur' => '3',
+                'num_superieur' => '4',
                 'position' => 'Cheffe d\'équipe TP',
                 'droit_employe' => 'o',
                 'droit_superieur' => 'o',
@@ -45,7 +46,7 @@ class Usagers extends Seeder
             ],
             [               
                 'nom' => 'Jonathan Morinville',
-                'num_superieur' => 'Alain Lizotte',
+                'num_superieur' => '5',
                 'position' => 'Chef de service TP',
                 'droit_employe' => 'o',
                 'droit_superieur' => 'o',
@@ -54,13 +55,14 @@ class Usagers extends Seeder
             ],
             [               
                 'nom' => 'Alain Lizotte',
-                'num_superieur' => '0',
+                'num_superieur' => '',
                 'position' => 'Chef de service TP',
                 'droit_employe' => 'o',
                 'droit_superieur' => 'o',
                 'droit_admin' => 'n',
                 'password' => Hash::make('123'),
             ],
-        ]); 
+            
+        ]);
     }
 }
