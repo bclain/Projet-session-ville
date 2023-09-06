@@ -14,5 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('users.index');
+});
+Route::get('/connexion', function () {
+    return view('users.connexion');
+});
+Route::get('/notifications', function () {
+    return view('users.notifications');
+});
+Route::get('/ajoutFormulaire', function () {
+    return view('formulaires.ajoutFormulaire');
+});
+Route::get('/formulaires', function () {
+    return view('formulaires.formulaire');
 });
