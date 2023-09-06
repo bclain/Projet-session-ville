@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Departement;
 
 class Departements extends Controller
 {
@@ -11,7 +12,8 @@ class Departements extends Controller
      */
     public function index()
     {
-        //
+        $departements = Departement::all();
+        return view('departements.index', compact('departements'));
     }
 
     /**
@@ -19,7 +21,7 @@ class Departements extends Controller
      */
     public function create()
     {
-        //
+        return view('departements.create');
     }
 
     /**
@@ -27,7 +29,14 @@ class Departements extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom_departement' => 'required|max:255',
+        ]);
+
+        Departement::create($request->all());
+
+        return redirect()->route('departements.index')
+                        ->with('success', 'Departement created successfully.');
     }
 
     /**
@@ -35,7 +44,8 @@ class Departements extends Controller
      */
     public function show(string $id)
     {
-        //
+        $departement = Departement::find($id);
+        return view('departements.show', compact('departement'));
     }
 
     /**
@@ -43,7 +53,8 @@ class Departements extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $departement = Departement::find($id);
+        return view('departements.edit', compact('departement'));
     }
 
     /**
@@ -51,7 +62,15 @@ class Departements extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nom_departement' => 'required|max:255',
+        ]);
+
+        $departement = Departement::find($id);
+        $departement->update($request->all());
+
+        return redirect()->route('departements.index')
+                        ->with('success', 'Departement updated successfully.');
     }
 
     /**
@@ -59,6 +78,10 @@ class Departements extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $departement = Departement::find($id);
+        $departement->delete();
+
+        return redirect()->route('departements.index')
+                        ->with('success', 'Departement deleted successfully.');
     }
 }

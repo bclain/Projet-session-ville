@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
-    public function notifications()
-    {
-        return $this->hasMany(Notification::class);
-    }
+
+    protected $fillable = ['id_user', 'data', 'vu'];
 }

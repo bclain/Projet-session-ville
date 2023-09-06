@@ -14,7 +14,6 @@
     <ul style="list-style-type: none; padding: 0;">
         <li style="margin-bottom: 10px;"><a href="/" style="text-decoration: none; color: #007bff;">Home</a></li>
         <li style="margin-bottom: 10px;"><a href="/connexion" style="text-decoration: none; color: #007bff;">Connexion</a></li>
-        <li style="margin-bottom: 10px;"><a href="/login" style="text-decoration: none; color: #007bff;">Login</a></li>
         <li style="margin-bottom: 10px;"><a href="/notifications" style="text-decoration: none; color: #007bff;">Notifications</a></li>
         <li style="margin-bottom: 10px;"><a href="/ajoutFormulaire" style="text-decoration: none; color: #007bff;">Ajout Formulaire</a></li>
         <li style="margin-bottom: 10px;"><a href="/formulaires" style="text-decoration: none; color: #007bff;">Formulaires</a></li>

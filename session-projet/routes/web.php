@@ -19,9 +19,6 @@ Route::get('/', function () {
 Route::get('/connexion', function () {
     return view('users.connexion');
 });
-Route::get('/login', function () {
-    return view('users.connexion');
-});
 Route::get('/notifications', function () {
     return view('users.notifications');
 });
