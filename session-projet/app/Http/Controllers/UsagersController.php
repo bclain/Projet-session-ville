@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\models\Usager;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
+
 
 class UsagersController extends Controller
 {
@@ -20,7 +23,7 @@ class UsagersController extends Controller
         }
         else
         {
-            return redirect('/login');
+            return redirect('/');
         } 
     }
     //debut
@@ -33,11 +36,12 @@ class UsagersController extends Controller
         $usager =Usager::where(['nom'=>$req->nom])->first();
         if(! $usager || ! Hash::check($req->password,$usager->password))
         {
-            return redirect('/');
+            return redirect('/login');
+            
         }
         else{
             $req->session()->put('usager',$usager);
-            return redirect('/');
+            return redirect('/home');
         }
     }
     //fin
@@ -61,9 +65,9 @@ class UsagersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show()
     {
-        //
+        return View('users.index');
     }
 
     /**
