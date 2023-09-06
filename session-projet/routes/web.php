@@ -33,3 +33,10 @@ Route::get('/formulaires', function () {
 });
 Route::post("/login",[UsagersController::class,'login']);
 Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne pour pouvoir rediriger apres la connexion 
+
+//deconnexion
+Route::get('/deconnexion', function () {
+    Session::forget('user');
+    return redirect('/');
+    
+});
