@@ -25,7 +25,6 @@ class Formulaires extends Seeder
                 'data' => json_encode(['champ1' => 'valeur3', 'champ2' => 'valeur4']),
                 'type_forms' => 'Type 2'
             ],
-            // Ajoutez autant de formulaires que vous le souhaitez
         ];
 
         foreach ($formulaires as $formulaire) {
