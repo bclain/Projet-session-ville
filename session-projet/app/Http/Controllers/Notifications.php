@@ -13,7 +13,7 @@ class Notifications extends Controller
     {
         $notifications = Notification::all();
         return view('notifications.index', compact('notifications'));
-    }
+    }    
 
     public function create()
     {

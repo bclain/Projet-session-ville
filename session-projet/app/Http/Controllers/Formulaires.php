@@ -69,4 +69,15 @@ class Formulaires extends Controller
         return redirect()->route('formulaires.index')
                         ->with('success', 'Formulaire deleted successfully.');
     }
+    public function showFirst()
+    {
+        $formulaire = Formulaire::first();
+        if ($formulaire) {
+            return view('formulaires.formulaire', compact('formulaire'));  // Changez 'show_first' en 'formulaire'
+        } else {
+            return redirect()->route('formulaires.index')
+                             ->with('error', 'No formulaires found.');
+        }
+    }
+    
 }

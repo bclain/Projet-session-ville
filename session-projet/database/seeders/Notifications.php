@@ -2,37 +2,33 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class Notifications extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        $notifications = [
-            [
-                'id_user' => 1,
-                'data' => json_encode(['message' => 'Notification 1']),
-                'vu' => false
-            ],
-            [
-                'id_user' => 2,
-                'data' => json_encode(['message' => 'Notification 2']),
-                'vu' => false
-            ],
-            // Ajoutez autant de notifications que vous le souhaitez
-        ];
+        // Assuming you have users with IDs 1 to 5
+        $user_ids = [1, 2, 3, 4, 5];
 
-        foreach ($notifications as $notification) {
+        // Create 100 notifications in total
+        for ($i = 0; $i < 100; $i++) {
+            $random_user_id = $user_ids[array_rand($user_ids)];
+
             DB::table('notifications')->insert([
-                'id_user' => $notification['id_user'],
-                'data' => $notification['data'],
-                'vu' => $notification['vu'],
+                'id_user' => $random_user_id,
+                'data' => json_encode(['message' => 'This is a test notification', 'type' => 'info']),
+                'vu' => rand(0, 1),  // Randomly set the notification as seen or not
                 'created_at' => now(),
-                'updated_at' => now()
+                'updated_at' => now(),
             ]);
+        }
     }
 }
