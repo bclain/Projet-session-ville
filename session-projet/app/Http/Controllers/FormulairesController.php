@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Formulaire;
 
-class Formulaires extends Controller
+class FormulairesController extends Controller
 {
     public function index()
     {

@@ -16,11 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-use App\Http\Controllers\Departements;
-use App\Http\Controllers\Formulaires;
-use App\Http\Controllers\Notifications;
-use App\Http\Controllers\Procedures;
-use App\Http\Controllers\Usagers;
 
 use App\Models\Departement;
 use App\Models\Formulaire;
@@ -38,7 +33,7 @@ Route::get('/', function () {
 Route::get('/connexion', function () {
     return view('users.connexion');
 });
-Route::get('/first-formulaire', [Formulaires::class, 'showFirst']);
+Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
 Route::get('/notifications', [Notifications::class, 'index']);
 
 Route::get('/notifications', function () {
