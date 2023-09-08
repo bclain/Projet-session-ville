@@ -9,22 +9,19 @@
         <form action="#" method="post">
             @csrf
             @php
-                // Pas besoin de json_decode ici car Laravel fait déjà le cast en tableau
                 $fields = $formulaire->data['fields'] ?? [];
             @endphp
 
             @foreach($fields as $field)
-                <div class="form-group">
+                <div class="form-group {{ $field['class'] ?? '' }}">
                     <label for="{{ $field['label'] }}">{{ $field['label'] }}</label>
 
-                    @if($field['type'] === 'text')
-                        <input type="text" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
-                    @elseif($field['type'] === 'email')
-                        <input type="email" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
-                    @elseif($field['type'] === 'date')
-                        <input type="date" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
-                    @elseif($field['type'] === 'textarea')
-                        <textarea name="{{ $field['label'] }}" class="form-control">{{ $field['value'] }}</textarea>
+                    @if($field['type'] === 'checkbox')
+                        <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'radio')
+                        <input type="radio" name="{{ $field['name'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @else
+                        <input type="{{ $field['type'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @endif
                 </div>
             @endforeach
@@ -32,4 +29,23 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ouvrirCheckbox = document.getElementById('ouvrir');
+        const conditionalFields = document.querySelectorAll('.conditional');
+
+        console.log('Ouvrir Checkbox:', ouvrirCheckbox);
+        console.log('Conditional Fields:', conditionalFields);
+
+        conditionalFields.forEach(field => field.style.display = 'none');
+
+        ouvrirCheckbox.addEventListener('change', function() {
+            console.log('Checkbox changed:', this.checked);
+            conditionalFields.forEach(field => field.style.display = this.checked ? 'block' : 'none');
+        });
+    });
+</script>
 @endsection
