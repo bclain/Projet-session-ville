@@ -1,5 +1,9 @@
 <?php
 use App\Http\Controllers\UsagersController;
+use App\Http\Controllers\ProceduresController;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\FormulairesController;
+use App\Http\Controllers\DepartementsController;
 use Illuminate\Support\Facades\Route;
 
 /*
