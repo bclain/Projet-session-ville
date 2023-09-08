@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('droit_employe', 255);
             $table->string('droit_superieur', 255);
             $table->string('droit_admin', 255);
+            $table->string('password',255);
 
             $table->rememberToken();
             $table->timestamps();
