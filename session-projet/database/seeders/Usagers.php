@@ -62,6 +62,15 @@ class Usagers extends Seeder
                 'droit_admin' => 'n',
                 'password' => Hash::make('123'),
             ],
+            [               
+                'nom' => 'test',
+                'num_superieur' => '',
+                'position' => 'Chef de service TP',
+                'droit_employe' => 'o',
+                'droit_superieur' => 'o',
+                'droit_admin' => 'n',
+                'password' => Hash::make('123'),
+            ],
             
         ]);
     }
