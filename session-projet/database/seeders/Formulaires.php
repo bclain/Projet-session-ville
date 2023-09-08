@@ -18,11 +18,15 @@ class Formulaires extends Seeder
                 'num_employe' => '2',
                 'data' => [
                     'fields' => [
+                        ['type' => 'checkbox', 'label' => 'Ouvrir', 'value' => false, 'id' => 'ouvrir'],
+                        ['type' => 'radio', 'label' => 'Option 1', 'value' => 'option1', 'name' => 'options', 'id' => 'option1', 'class' => 'conditional'],
+                        ['type' => 'radio', 'label' => 'Option 2', 'value' => 'option2', 'name' => 'options', 'id' => 'option2', 'class' => 'conditional'],
                         ['type' => 'text', 'label' => 'Nom', 'value' => 'John'],
                         ['type' => 'email', 'label' => 'Email', 'value' => 'john@example.com'],
                         ['type' => 'date', 'label' => 'Date de naissance', 'value' => '1990-01-01'],
                         ['type' => 'textarea', 'label' => 'Commentaires', 'value' => 'Aucun commentaire'],
                         ['type' => 'text', 'label' => 'Pays', 'value' => 'France'],
+                        ['type' => 'time', 'label' => 'Heure de rendez-vous', 'value' => '14:00'],
                     ]
                 ],
                 'type_forms' => 'Type 1'
