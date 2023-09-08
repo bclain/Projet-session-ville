@@ -20,6 +20,8 @@
                         <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @elseif($field['type'] === 'radio')
                         <input type="radio" name="{{ $field['name'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'time')
+                        <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @else
                         <input type="{{ $field['type'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @endif

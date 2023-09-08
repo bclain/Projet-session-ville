@@ -26,6 +26,7 @@ class Formulaires extends Seeder
                         ['type' => 'date', 'label' => 'Date de naissance', 'value' => '1990-01-01'],
                         ['type' => 'textarea', 'label' => 'Commentaires', 'value' => 'Aucun commentaire'],
                         ['type' => 'text', 'label' => 'Pays', 'value' => 'France'],
+                        ['type' => 'time', 'label' => 'Heure de rendez-vous', 'value' => '14:00'],
                     ]
                 ],
                 'type_forms' => 'Type 1'
