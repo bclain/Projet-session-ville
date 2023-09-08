@@ -8,13 +8,13 @@ use App\Models\Notification;
 use App\Models\Usager;
 use App\Models\Formulaire;
 
-class Notifications extends Controller
+class NotificationsController extends Controller
 {
     public function index()
     {
         $notifications = Notification::all();
         return view('notifications.index', compact('notifications'));
-    }
+    }    
 
     public function create()
     {

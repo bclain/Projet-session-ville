@@ -1,36 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Work Safety Forms</title>
-</head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+<!-- resources/views/formulaires/formulaire.blade.php -->
 
-<div style="width: 80%; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; margin-bottom: 20px;">Work Safety Forms</h1>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#fireSafety" style="text-decoration: none; color: black;">Fire Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#chemicalSafety" style="text-decoration: none; color: black;">Chemical Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#equipmentSafety" style="text-decoration: none; color: black;">Equipment Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#ergonomics" style="text-decoration: none; color: black;">Ergonomics</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#firstAid" style="text-decoration: none; color: black;">First Aid</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#emergencyResponse" style="text-decoration: none; color: black;">Emergency Response</a>
-        </div>
-        <!-- Add more grid items as needed -->
+@extends('layouts.header')
+
+@section('content')
+    <div class="container">
+        <h1>{{ $formulaire->type_forms }}</h1>
+
+        <form action="#" method="post">
+            @csrf
+            @php
+                // Pas besoin de json_decode ici car Laravel fait déjà le cast en tableau
+                $fields = $formulaire->data['fields'] ?? [];
+            @endphp
+
+            @foreach($fields as $field)
+                <div class="form-group">
+                    <label for="{{ $field['label'] }}">{{ $field['label'] }}</label>
+
+                    @if($field['type'] === 'text')
+                        <input type="text" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'email')
+                        <input type="email" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'date')
+                        <input type="date" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'textarea')
+                        <textarea name="{{ $field['label'] }}" class="form-control">{{ $field['value'] }}</textarea>
+                    @endif
+                </div>
+            @endforeach
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
-</div>
-
-</body>
-</html>
+@endsection
