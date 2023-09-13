@@ -1,36 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Work Safety Forms</title>
-</head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+<!-- resources/views/formulaires/formulaire.blade.php -->
 
-<div style="width: 80%; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; margin-bottom: 20px;">Work Safety Forms</h1>
-    
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#fireSafety" style="text-decoration: none; color: black;">Fire Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#chemicalSafety" style="text-decoration: none; color: black;">Chemical Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#equipmentSafety" style="text-decoration: none; color: black;">Equipment Safety</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#ergonomics" style="text-decoration: none; color: black;">Ergonomics</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#firstAid" style="text-decoration: none; color: black;">First Aid</a>
-        </div>
-        <div style="padding: 20px; background-color: #f2f2f2; text-align: center; border-radius: 8px;">
-            <a href="#emergencyResponse" style="text-decoration: none; color: black;">Emergency Response</a>
-        </div>
-        <!-- Add more grid items as needed -->
+@extends('layouts.header')
+
+@section('content')
+    <div class="container">
+        <h1>{{ $formulaire->type_forms }}</h1>
+
+        <form action="#" method="post">
+            @csrf
+            @php
+                $fields = $formulaire->data['fields'] ?? [];
+            @endphp
+
+            @foreach($fields as $field)
+                <div class="form-group {{ $field['class'] ?? '' }}">
+                    <label for="{{ $field['label'] }}">{{ $field['label'] }}</label>
+
+                    @if($field['type'] === 'checkbox')
+                        <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'radio')
+                        <input type="radio" name="{{ $field['name'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] === 'time')
+                        <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @else
+                        <input type="{{ $field['type'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @endif
+                </div>
+            @endforeach
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
-</div>
+@endsection
 
-</body>
-</html>
+@section('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ouvrirCheckbox = document.getElementById('ouvrir');
+        const conditionalFields = document.querySelectorAll('.conditional');
+
+        console.log('Ouvrir Checkbox:', ouvrirCheckbox);
+        console.log('Conditional Fields:', conditionalFields);
+
+        conditionalFields.forEach(field => field.style.display = 'none');
+
+        ouvrirCheckbox.addEventListener('change', function() {
+            console.log('Checkbox changed:', this.checked);
+            conditionalFields.forEach(field => field.style.display = this.checked ? 'block' : 'none');
+        });
+    });
+</script>
+@endsection

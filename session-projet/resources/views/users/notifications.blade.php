@@ -4,37 +4,30 @@
     <meta charset="UTF-8">
     <title>Notifications</title>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+<body style="font-family: 'Arial', sans-serif; background-color: #f8f9fa; margin: 0; padding: 0;">
 
-<div style="width: 80%; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; margin-bottom: 20px;">Mail Inbox</h1>
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background-color: #f2f2f2;">
-                <th style="padding: 10px; border: 1px solid #ddd;">Sender</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Subject</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">noreply@forms.com</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">New Form Received: Contact Us</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Sep 6, 2023</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">noreply@forms.com</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">New Form Received: Feedback</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Sep 5, 2023</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border: 1px solid #ddd;">noreply@forms.com</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">New Form Received: Sign Up</td>
-                <td style="padding: 10px; border: 1px solid #ddd;">Sep 4, 2023</td>
-            </tr>
-            <!-- Add more rows as needed -->
-        </tbody>
-    </table>
+<div style="width: 80%; margin: 50px auto; background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="text-align: center; margin-bottom: 20px; color: #343a40;">Notifications</h1>
+    <ul style="list-style-type: none; padding: 0;">
+        @foreach($notifications as $notification)
+            @php
+                $data = json_decode($notification->data, true);
+            @endphp
+            <li style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <strong style="color: #343a40;">User ID:</strong> <span style="color: #495057;">{{ $notification->id_user }}</span><br>
+                        <strong style="color: #343a40;">Message:</strong> <span style="color: #495057;">{{ $data['message'] }}</span><br>
+                        <strong style="color: #343a40;">Type:</strong> <span style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
+                        <strong style="color: #343a40;">Seen:</strong> <span style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
+                    </div>
+                    <div>
+                        <strong style="color: #343a40;">Timestamp:</strong> <span style="color: #495057;">{{ $notification->created_at }}</span>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
 </div>
 
 </body>

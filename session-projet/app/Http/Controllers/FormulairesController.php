@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Formulaire;
 
-class Formulaires extends Controller
+class FormulairesController extends Controller
 {
     public function index()
     {
@@ -69,4 +69,15 @@ class Formulaires extends Controller
         return redirect()->route('formulaires.index')
                         ->with('success', 'Formulaire deleted successfully.');
     }
+    public function showFirst()
+    {
+        $formulaire = Formulaire::first();
+        if ($formulaire) {
+            return view('formulaires.formulaire', compact('formulaire'));  // Changez 'show_first' en 'formulaire'
+        } else {
+            return redirect()->route('formulaires.index')
+                             ->with('error', 'No formulaires found.');
+        }
+    }
+    
 }
