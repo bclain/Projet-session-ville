@@ -13,10 +13,14 @@
       <form action="/login" method="post" >
       @csrf
       <h2 >Connexion</h2>
-        <label for="user">nom d'utilisateur</label>
-        <input type="text" id="nom" name="nom">
-        <label for="password">password</label>
-        <input type="password" id="password" name="password">
+        <div class="input">
+          <label for="user">nom d'utilisateur</label>
+          <input type="text" id="nom" name="nom">
+        </div>
+        <div class="input">
+          <label for="password">password</label>
+          <input type="password" id="password" name="password">
+        </div>
       
         @if ($errors->any())
                           <div>
@@ -31,7 +35,7 @@
                       @endif
       
                       
-        <button class="button">Se connecter</button>
+        <button class="btn-base">Se connecter</button>
       </form>
   </div>
                               
