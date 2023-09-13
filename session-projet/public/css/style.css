@@ -122,13 +122,13 @@ header .menu-btn{
   transition: 200ms ease-in-out;
   z-index: 100;
   opacity: 0;
-  transform: translateX(-150%);
+  pointer-events:none;
 }
 
 .dropdown-menu.open{
   opacity: 1;
   transition: 200ms ease-in-out;
-  transform: translateX(0%);
+  pointer-events:initial;
 }
 
 .dropdown-menu ul {
@@ -196,7 +196,7 @@ label{
   font-size: 12px;
   font-style: normal;
   font-weight: 700;
-  line-height: normal;
+  line-height: 2;
 }
 
 .fullscreen{
@@ -256,19 +256,27 @@ input, select {
   background-color: white;
 }
 
-
 .btn-base{
   display: inline-flex;
   padding: 10px;
   justify-content: center;
   align-items: center;
   border-radius: 5px;
-  background: #0076D5;
+  border: none;
+  background: var(--link);
   color: #FFF;
   font-family: Inter;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+
+.btn-base:hover{
+  cursor: pointer;
+  color: var(--link);
+  background-color: var(--lightblue);
+  border: var(--link) 1px solid;
 }
 
