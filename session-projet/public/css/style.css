@@ -14,7 +14,7 @@
   --content: calc((100vw/12)*9.5);
   --xsmall: calc((100vw/12)*0.25);
   --small: calc((100vw/12)*0.5);
-  --mid: calc(100vw/12);
+  --mid: 40px;
   --big: calc((100vw/12)*2);
   --maxwidth: 1440px;
   /*big card size*/
@@ -116,16 +116,17 @@ header .menu-btn{
   height: calc(100vh - 70px);
   padding: 39px 20px;
   align-items: flex-start;
-  transform: translateX(-150%);
   background-color: var(--lightblue);
   position: absolute;
   justify-content: center;
   transition: 200ms ease-in-out;
   z-index: 100;
+  opacity: 0;
 }
 
 .dropdown-menu.open{
-  transform: translateX(0%);
+  opacity: 1;
+  transition: 200ms ease-in-out;
 }
 
 .dropdown-menu ul {
@@ -136,8 +137,18 @@ header .menu-btn{
   align-items: flex-start;
   gap: 20px;
   flex-shrink: 0;
+  transform: translateX(-50%);
   background-color: var(--lightblue);
+  transition: 200ms ease-in-out;
+  opacity: 0;
 }
+
+.dropdown-menu.open ul {
+  transition: 200ms ease-in-out;
+  transform: translateX(0%);
+  opacity: 1;
+}
+
 .dropdown-menu p{
   font-weight: 600;
 }
