@@ -122,11 +122,13 @@ header .menu-btn{
   transition: 200ms ease-in-out;
   z-index: 100;
   opacity: 0;
+  transform: translateX(-150%);
 }
 
 .dropdown-menu.open{
   opacity: 1;
   transition: 200ms ease-in-out;
+  transform: translateX(0%);
 }
 
 .dropdown-menu ul {
@@ -187,3 +189,42 @@ header .menu-btn{
   color: var(--dark);  
 }
 
+
+label{
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.fullscreen{
+  height: calc(100% - 70px);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  position: relative;
+}
+
+h2{
+  color: #000;
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.connexion img{
+  display: block;
+  margin: 0px auto;
+  width: 150px;
+}
+
+.connexion .contain{
+  gap: 50px;
+  display: flex;
+  flex-direction: column;
+}
