@@ -27,7 +27,7 @@ use App\Models\Usager;
 Route::get('/login', function () {
     return view('users.connexion');
 });
-Route::get('/', function () {
+Route::get('/acceuil', function () { //modif
     return view('users.index');
 });
 Route::get('/connexion', function () {
@@ -44,15 +44,13 @@ Route::get('/notifications', function () {
 Route::get('/ajoutFormulaire', function () {
     return view('formulaires.ajoutFormulaire');
 });
-Route::get('/', function () {
-    return view('users.index');
-});
+
 Route::post("/login",[UsagersController::class,'login']);
 Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne pour pouvoir rediriger apres la connexion 
 
 //deconnexion
 Route::get('/deconnexion', function () {
     Session::forget('user');
-    return redirect('/');
+    return redirect('/login');
     
 });
