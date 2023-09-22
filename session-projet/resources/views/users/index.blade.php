@@ -16,6 +16,12 @@
         <li style=""><a href="/ajoutFormulaire" style="text-decoration: none; color: #007bff;">Ajout Formulaire</a></li>
         <li style=""><a href="/formulaires" style="text-decoration: none; color: #007bff;">Formulaires</a></li>
     </ul>
-</section>
+    <!-- L effichage du username -->
+    @if(Session::has('usager'))
+    <div class="btn-group">     
+            {{Session::get('usager')['nom']}}                                     
+            <li><a href="/deconnexion" id="dec">Deconnexion</a></li>                      
+    </div>
+    @endif
 
 @endsection
