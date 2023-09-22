@@ -34,12 +34,11 @@ Route::get('/connexion', function () {
     return view('users.connexion');
 });
 Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
-Route::get('/notifications', [Notifications::class, 'index']);
 
-Route::get('/notifications', function () {
-    $notifications = Notification::all();
-    return view('users.notifications', compact('notifications'));
-});
+
+Route::get('/notifications', [NotificationsController::class, 'index']);
+
+
 
 Route::get('/ajoutFormulaire', function () {
     return view('formulaires.ajoutFormulaire');

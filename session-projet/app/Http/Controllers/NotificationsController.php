@@ -2,7 +2,7 @@
 
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\Usager;
@@ -12,8 +12,9 @@ class NotificationsController extends Controller
 {
     public function index()
     {
-        $notifications = Notification::all();
-        return view('notifications.index', compact('notifications'));
+        $user_id = Session::get('usager')['id'];
+        $notifications = Notification::Where('id_user',$user_id)->get();
+        return view('users.index', compact('notifications'));
     }    
 
     public function create()

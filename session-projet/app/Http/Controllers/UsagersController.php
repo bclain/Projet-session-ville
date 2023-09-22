@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\models\Usager;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -41,7 +42,8 @@ class UsagersController extends Controller
         }
         else{
             $req->session()->put('usager',$usager);
-            return redirect('/home'); //redirection apres connection
+            
+            return redirect('/home'); 
         }
     }
     //fin
@@ -67,7 +69,9 @@ class UsagersController extends Controller
      */
     public function show()
     {
-        return View('users.index');
+        $user_id = Session::get('usager')['id'];
+        $notifications = Notification::Where('id_user',$user_id)->get();
+        return View('users.index', compact('notifications'));
     }
 
     /**
