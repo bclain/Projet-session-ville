@@ -46,6 +46,56 @@ class Formulaires extends Seeder
                 ],
                 'type_forms' => 'Type 2'
             ],
+            [
+                'num_superieur' => '1',
+                'num_employe' => '2',
+                'data' => [
+                    'fields' => [
+                        ['type' => 'h3', 'label' => '', 'value' => 'Identification', 'id' => '', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Nom de l\'employé', 'value' => '', 'id' => 'nom_employe', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Fonction au moment de l\'évènement', 'value' => '', 'id' => 'fonction', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Matricule', 'value' => '', 'id' => 'matricule', 'dg' => false],
+                        ['type' => 'h3', 'label' => '', 'value' => 'Description de l\'évènement', 'id' => '', 'dg' => false],
+                        ['type' => 'date', 'label' => 'Date de l\'accident', 'value' => '', 'id' => 'date_accident', 'dg' => false],
+                        ['type' => 'time', 'label' => 'Heure', 'value' => '', 'id' => 'time_accident', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Témoins?', 'value' => false, 'id' => 'ouvrir', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Nom Complet', 'value' => '', 'id' => 'temoin1', 'class' => 'conditional', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Nom Complet', 'value' => '', 'id' => 'temoin2', 'class' => 'conditional', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Endroit de l\'accident', 'value' => '', 'id' => 'endroitEmpl', 'dg' => false],
+                        ['type' => 'text', 'label' => 'Secteur d\'activité', 'value' => '', 'id' => 'secteur_activite', 'dg' => false],
+                        ['type' => 'p', 'label' => 'Nature et site de la blessure (cochez, s\'il y a lieu, côté droit ou gauche)', 'value' => false, 'id' => 'nature_blessure', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Tête, visage, nez, yeux, oreille D/G', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => true],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Torse', 'value' => '', 'id' => 'torse', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Poumon', 'value' => '', 'id' => 'poumon', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Bras, épaule, coude', 'value' => '', 'id' => 'bras_epaule_coude', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Poignets, main, doigt', 'value' => '', 'id' => 'poignets_main_doigt', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Dos Haut/ Bas', 'value' => '', 'id' => 'dos_haut_bas', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Hanche D/G', 'value' => '', 'id' => 'hanche_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Jambe, genou D/G', 'value' => '', 'id' => 'jambe_genou_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'checkbox', 'label' => 'Pied, orteil, cheville', 'value' => '', 'id' => 'pied_orteil_cheville', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Oui', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                        ['type' => 'radio', 'label' => 'Non', 'value' => '', 'id' => 'tete_visage_nez_yeux_oreille_dg', 'dg' => false],
+                    ]
+                    
+                ],
+                'type_forms' => 'Accident de travail'
+            ],
         ];
 
         foreach ($formulaires as $formulaire) {

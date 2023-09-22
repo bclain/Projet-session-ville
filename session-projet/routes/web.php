@@ -47,6 +47,9 @@ Route::get('/ajoutFormulaire', function () {
 Route::post("/login",[UsagersController::class,'login']);
 Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne pour pouvoir rediriger apres la connexion 
 
+Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 'showAccidentDeTravail']);
+
+
 //deconnexion
 Route::get('/deconnexion', function () {
     Session::forget('usager');
