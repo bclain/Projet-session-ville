@@ -83,7 +83,7 @@
 
             </div>
         </div>
-        @foreach($notifications as $notification)
+        {{-- @foreach($notifications as $notification)
             @php
                 $data = json_decode($notification->data, true);
             @endphp
@@ -100,7 +100,7 @@
                     </div>
                 </div>
             </li>
-        @endforeach
+        @endforeach --}}
 
         
 
