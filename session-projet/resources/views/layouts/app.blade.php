@@ -97,7 +97,7 @@
                         </div>
                       @endif
     <!--erreur -->
-                      
+                 
 
     @yield('Mid') <!--nom de la section  -->
 
