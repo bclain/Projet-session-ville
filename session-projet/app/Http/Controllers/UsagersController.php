@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\models\Usager;
+use App\models\Notification;
+use Database\Seeders\Notifications;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
