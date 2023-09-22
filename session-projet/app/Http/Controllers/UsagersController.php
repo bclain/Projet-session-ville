@@ -71,7 +71,7 @@ class UsagersController extends Controller
     {
         $user_id = Session::get('usager')['id'];
         $notifications = Notification::Where('id_user',$user_id)->get();
-        return View('users.index',compact('notifications'));
+        return View('users.index', compact('notifications'));
     }
 
     /**
