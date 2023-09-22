@@ -67,7 +67,9 @@ class UsagersController extends Controller
      */
     public function show()
     {
-        return View('users.index');
+        $user_id = Session::get('usager')['id'];
+        $notifications = Notification::Where('id_user',$user_id)->get();
+        return View('users.index',compact('notifications'));
     }
 
     /**

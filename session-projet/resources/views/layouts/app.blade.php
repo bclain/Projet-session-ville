@@ -164,57 +164,9 @@
                             <strong>Seen:</strong> <span
                                 style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
                         </div>
-                        <div>
-                            <strong>Timestamp:</strong> <span
-                                style="color: #495057;">{{ $notification->created_at }}</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div>
-                            <strong> User ID:</strong> <span
-                                style="color: #495057;">{{ $notification->id_user }}</span><br>
-                            <strong>Message:</strong> <span style="color: #495057;">{{ $data['message'] }}</span><br>
-                            <strong>Type:</strong> <span
-                                style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
-                            <strong>Seen:</strong> <span
-                                style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
-                        </div>
-                        <div>
-                            <strong>Timestamp:</strong> <span
-                                style="color: #495057;">{{ $notification->created_at }}</span>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <div>
-                        <div>
-                            <strong> User ID:</strong> <span
-                                style="color: #495057;">{{ $notification->id_user }}</span><br>
-                            <strong>Message:</strong> <span style="color: #495057;">{{ $data['message'] }}</span><br>
-                            <strong>Type:</strong> <span
-                                style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
-                            <strong>Seen:</strong> <span
-                                style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
-                        </div>
-                        <div>
-                            <strong>Timestamp:</strong> <span
-                                style="color: #495057;">{{ $notification->created_at }}</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        @if (isset($errors) && $errors->any())
-            <div class="alert alert-danger ">
-                @foreach ($errors->all() as $error)
-                    <p>{{ $error }}</p>
-                @endforeach
-            </div>
-        @endif
-        <!--erreur -->
- --}}
+                      @endif
+    <!--erreur -->
+                 
 
         @yield('Mid') <!--nom de la section  -->
 
