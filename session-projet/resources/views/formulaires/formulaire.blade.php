@@ -1,5 +1,3 @@
-<!-- resources/views/formulaires/formulaire.blade.php -->
-
 @extends('layouts.header')
 
 @section('content')
@@ -14,18 +12,17 @@
 
             @foreach($fields as $field)
                 <div class="form-group {{ $field['class'] ?? '' }}">
-                    <label for="{{ $field['label'] }}">{{ $field['label'] }}</label>
+                    @if($field['type'] !== 'radio')
+                        <label for="{{ $field['id'] ?? '' }}">{{ $field['label'] }}</label>
+                    @endif
 
                     @if($field['type'] === 'checkbox')
-                        <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                        <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control" {{ isset($field['dg']) && $field['dg'] ? 'data-dg=true' : '' }} data-group="{{ $field['group'] ?? '' }}">
                     @elseif($field['type'] === 'radio')
-                        @if(is_array($field['value']))
-                            @foreach($field['value'] as $option)
-                                <input type="radio"value="{{ $option }}" class="form-control"> {{ $option }}
-                            @endforeach
-                        @else
-                            <input type="radio" value="{{ $field['value'] }}" class="form-control">
-                        @endif
+                        <div class="dg-container" style="display: none;">
+                            <input type="radio" id="{{ $field['id'] ?? '' }}" name="{{ $field['group'] ?? '' }}" value="{{ $field['value'] }}" class="form-control dg-option" data-group="{{ $field['group'] ?? '' }}">
+                            <label for="{{ $field['id'] ?? '' }}">{{ $field['label'] }}</label>
+                        </div>
                     @elseif($field['type'] === 'time')
                         <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @elseif($field['type'] === 'h1')
@@ -42,24 +39,42 @@
                 </div>
             @endforeach
 
-
-
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection
 
+
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const ouvrirCheckbox = document.getElementById('ouvrir');
-        const conditionalFields = document.querySelectorAll('.conditional');
-        conditionalFields.forEach(field => field.style.display = 'none');
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxesWithDg = document.querySelectorAll('input[type="checkbox"][data-dg="true"]');
 
-        ouvrirCheckbox.addEventListener('change', function() {
-            console.log('Checkbox changed:', this.checked);
-            conditionalFields.forEach(field => field.style.display = this.checked ? 'block' : 'none');
+    checkboxesWithDg.forEach(checkbox => {
+        // Find the related radio button containers based on the checkbox's group
+        const radioButtons = document.querySelectorAll(`.dg-container input[type="radio"][data-group="${checkbox.getAttribute('data-group')}"]`);
+        const relatedRadioContainers = Array.from(radioButtons).map(radio => radio.parentNode);
+
+        // Hide the radio button containers initially if the checkbox is not checked
+        relatedRadioContainers.forEach(container => {
+            container.style.display = checkbox.checked ? 'block' : 'none';
+        });
+
+        checkbox.addEventListener('change', function() {
+            relatedRadioContainers.forEach(container => {
+                container.style.display = checkbox.checked ? 'block' : 'none';
+            });
         });
     });
+
+    const ouvrirCheckbox = document.getElementById('ouvrir');
+    const conditionalFields = document.querySelectorAll('.conditional');
+    conditionalFields.forEach(field => field.style.display = 'none');
+
+    ouvrirCheckbox.addEventListener('change', function() {
+        conditionalFields.forEach(field => field.style.display = this.checked ? 'block' : 'none');
+    });
+});
+
 </script>
 @endsection
