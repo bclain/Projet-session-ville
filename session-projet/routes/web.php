@@ -50,7 +50,6 @@ Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne p
 
 //deconnexion
 Route::get('/deconnexion', function () {
-    Session::forget('user');
     return redirect('/login');
     
 });
