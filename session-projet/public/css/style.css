@@ -56,6 +56,13 @@ ul {
 
 a{
    text-decoration: none;
+   transition: 100ms ease-in-out;
+}
+
+
+a:hover{
+  transform: scale(1.05);
+  transition: 200ms ease-in-out;
 }
 
 h1{
@@ -315,17 +322,17 @@ input, select {
   justify-content: center;
 }
 
-.form-it{
+
+.lien-it{
   display: flex;
   align-self: stretch;
   width: 100%;
-  max-width: 400px;
   padding: 15px 9px;
   align-items: center;
   gap: 15px;
+  max-width: 400px;
   border-radius: 5px;
   border: 0.5px solid #DBDBDB;
-  background: linear-gradient(180deg, #E4F3FF 0%, rgba(255, 255, 255, 0.00) 100%);
 }
 
 .form-it{
