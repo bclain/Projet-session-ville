@@ -12,18 +12,19 @@
 
             @foreach($fields as $field)
                 <div class="form-group {{ $field['class'] ?? '' }}">
-                    @if($field['type'] !== 'radio')
-                        <label for="{{ $field['id'] ?? '' }}">{{ $field['label'] }}</label>
-                    @endif
-
                     @if($field['type'] === 'checkbox')
-                        <input type="checkbox" id="{{ $field['id'] ?? '' }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control" {{ isset($field['dg']) && $field['dg'] ? 'data-dg=true' : '' }} data-group="{{ $field['group'] ?? '' }}">
+                        <input type="checkbox" id="{{ $field['id'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control" {{ $field['dg'] ? 'data-dg=true' : '' }} data-group="{{ $field['group'] ?? '' }}">
+                        <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
                     @elseif($field['type'] === 'radio')
                         <div class="dg-container" style="display: none;">
-                            <input type="radio" id="{{ $field['id'] ?? '' }}" name="{{ $field['group'] ?? '' }}" value="{{ $field['value'] }}" class="form-control dg-option" data-group="{{ $field['group'] ?? '' }}">
-                            <label for="{{ $field['id'] ?? '' }}">{{ $field['label'] }}</label>
+                            <input type="radio" id="{{ $field['id'] }}" name="{{ $field['group'] }}" value="{{ $field['value'] }}" class="form-control dg-option" data-group="{{ $field['group'] }}">
+                            <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
                         </div>
-                    @elseif($field['type'] === 'time')
+                    @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
+                        <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
+                    @endif
+
+                    @if($field['type'] === 'time')
                         <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @elseif($field['type'] === 'h1')
                         <h1>{{ $field['value'] }}</h1>
@@ -33,11 +34,12 @@
                         <h3>{{ $field['value'] }}</h3>
                     @elseif($field['type'] === 'p')
                         <span>{{ $field['value'] }}</span>
-                    @else
-                        <input type="{{ $field['type'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
+                    @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
+                        <input type="{{ $field['type'] }}" id="{{ $field['id'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @endif
                 </div>
             @endforeach
+
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
