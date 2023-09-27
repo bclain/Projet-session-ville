@@ -66,7 +66,7 @@ class FormulairesController extends Controller
         $formulaire = Formulaire::find($id);
         $formulaire->delete();
 
-        return redirect()->route('formulaires.index')
+        return redirect()->route('users.index') //erreur 
                         ->with('success', 'Formulaire deleted successfully.');
     }
     public function showFirst()
@@ -75,7 +75,7 @@ class FormulairesController extends Controller
         if ($formulaire) {
             return view('formulaires.formulaire', compact('formulaire'));  // Changez 'show_first' en 'formulaire'
         } else {
-            return redirect()->route('formulaires.index')
+            return redirect()->route('users.index') //erreur 
                              ->with('error', 'No formulaires found.');
         }
     }
@@ -86,7 +86,7 @@ class FormulairesController extends Controller
         if ($formulaire) {
             return view('formulaires.formulaire', compact('formulaire'));  // Assuming you have a view named 'show_accident'
         } else {
-            return redirect()->route('formulaires.index')
+            return redirect()->route('users.index') //erreur 
                              ->with('error', 'No "Accident de travail" form found.');
         }
     }
