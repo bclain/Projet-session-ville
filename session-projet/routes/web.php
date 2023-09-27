@@ -34,11 +34,12 @@ Route::get('/connexion', function () {
     return view('users.connexion');
 });
 Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
+Route::get('/notifications', [Notifications::class, 'index']);
 
-
-Route::get('/notifications', [NotificationsController::class, 'index']);
-
-
+Route::get('/notifications', function () {
+    $notifications = Notification::all();
+    return view('users.notifications', compact('notifications'));
+});
 
 Route::get('/ajoutFormulaire', function () {
     return view('formulaires.ajoutFormulaire');
@@ -52,7 +53,6 @@ Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 's
 
 //deconnexion
 Route::get('/deconnexion', function () {
-    Session::forget('usager');
     return redirect('/login');
     
 });
