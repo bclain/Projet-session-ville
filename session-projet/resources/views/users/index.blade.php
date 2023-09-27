@@ -78,7 +78,7 @@
             </div>
         </div>
 <!-- Notifications -->
-        <div style="width: 80%; margin: 50px auto; background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div style="width: 80%; margin: 50px auto; background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
     <h1 style="text-align: center; margin-bottom: 20px; color: #343a40;">Notifications</h1>
     <ul style="list-style-type: none; padding: 0;">
         @foreach($notifications as $notification)

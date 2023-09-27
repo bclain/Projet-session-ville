@@ -6,7 +6,7 @@
   --link: #0076D5;
   --primary: #1BBF00;
   --lightblue: #ECF6FF;
-  --lightgreen: #E1FBFF;  
+  --lightgreen: #EAFFE7;  
   --dark: #2F4858;
   --darklazy: #597383;
   --alert: #FF1F00;
@@ -129,12 +129,38 @@ header .menu-btn{
   padding: 39px 20px;
   align-items: flex-start;
   background-color: var(--lightblue);
-  position: absolute;
+  position: fixed;
   justify-content: center;
   transition: 200ms ease-in-out;
   z-index: 100;
   opacity: 0;
   pointer-events:none;
+  max-width: 1440px;
+}
+
+.dropdown-notif{
+  display: flex;
+  width: 100%;
+  height: calc(100vh - 70px);
+  padding: 39px 20px;
+  align-items: center;
+  background-color: var(--lightgreen);
+  position: fixed;
+  justify-content: center;
+  transition: 200ms ease-in-out;
+  z-index: 100;
+  opacity: 0;
+  justify-content: flex-start;
+  pointer-events:none;
+  overflow: scroll;    
+  flex-direction: column;
+  max-width: 1440px;
+}
+
+.dropdown-notif.open{
+  opacity: 1;
+  transition: 200ms ease-in-out;
+  pointer-events:initial;
 }
 
 .dropdown-menu.open{

@@ -54,31 +54,7 @@
                     </svg>
                 </a>
             </nav>
-            <!-- Notifications -->
-        <div style="width: 80%; margin: 50px auto; background-color: #ffffff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; margin-bottom: 20px; color: #343a40;">Notifications</h1>
-    <ul style="list-style-type: none; padding: 0;">
-        @foreach($notifications as $notification)
-            @php
-                $data = json_decode($notification->data, true);
-            @endphp
-            <li style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                <div style="display: flex; justify-content: space-between;">
-                    <div>
-                        <strong style="color: #343a40;">User ID:</strong> <span style="color: #495057;">{{ $notification->id_user }}</span><br>
-                        <strong style="color: #343a40;">Message:</strong> <span style="color: #495057;">{{ $data['message'] }}</span><br>
-                        <strong style="color: #343a40;">Type:</strong> <span style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
-                        <strong style="color: #343a40;">Seen:</strong> <span style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
-                    </div>
-                    <div>
-                        <strong style="color: #343a40;">Timestamp:</strong> <span style="color: #495057;">{{ $notification->created_at }}</span>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
-</div>
-<!-- Notifications -->
+
         </header>
         <nav class="dropdown-menu">
             <ul>
@@ -104,16 +80,16 @@
                                 </svg>
                                 <p>Formulaire de déclaration d'accident</p>
                             </a></li>
-                        <li><a href=""> <svg width="22" height="27" viewBox="0 0 22 27" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                        <li><a href=""> <svg width="22" height="27" viewBox="0 0 22 27"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M9.625 21.6H12.375V17.55H16.5V14.85H12.375V10.8H9.625V14.85H5.5V17.55H9.625V21.6ZM2.75 27C1.99375 27 1.34613 26.7354 0.807127 26.2062C0.268127 25.677 -0.000914332 25.0416 2.33447e-06 24.3V2.7C2.33447e-06 1.9575 0.269502 1.32165 0.808502 0.792452C1.3475 0.263252 1.99467 -0.000897708 2.75 2.29202e-06H13.75L22 8.1V24.3C22 25.0425 21.7305 25.6783 21.1915 26.2075C20.6525 26.7367 20.0053 27.0009 19.25 27H2.75ZM12.375 9.45H19.25L12.375 2.7V9.45Z"
                                         fill="#597383" />
                                 </svg>
                                 <p>Formulaire de signalement <br> d'une situation dangereuse</p>
                             </a></li>
-                        <li><a href=""> <svg width="22" height="27" viewBox="0 0 22 27" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
+                        <li><a href=""> <svg width="22" height="27" viewBox="0 0 22 27"
+                                    fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M9.625 21.6H12.375V17.55H16.5V14.85H12.375V10.8H9.625V14.85H5.5V17.55H9.625V21.6ZM2.75 27C1.99375 27 1.34613 26.7354 0.807127 26.2062C0.268127 25.677 -0.000914332 25.0416 2.33447e-06 24.3V2.7C2.33447e-06 1.9575 0.269502 1.32165 0.808502 0.792452C1.3475 0.263252 1.99467 -0.000897708 2.75 2.29202e-06H13.75L22 8.1V24.3C22 25.0425 21.7305 25.6783 21.1915 26.2075C20.6525 26.7367 20.0053 27.0009 19.25 27H2.75ZM12.375 9.45H19.25L12.375 2.7V9.45Z"
                                         fill="#597383" />
@@ -155,38 +131,50 @@
                     </a>
                 </li>
             </ul>
-          </li>
-          <li>
-            <a href="">
-              <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0.75 0.5C0.334375 0.5 0 0.834375 0 1.25V2.75C0 3.16563 0.334375 3.5 0.75 3.5H2.25C2.66563 3.5 3 3.16563 3 2.75V1.25C3 0.834375 2.66563 0.5 2.25 0.5H0.75ZM5.5 1C4.94688 1 4.5 1.44687 4.5 2C4.5 2.55312 4.94688 3 5.5 3H14.5C15.0531 3 15.5 2.55312 15.5 2C15.5 1.44687 15.0531 1 14.5 1H5.5ZM5.5 6C4.94688 6 4.5 6.44688 4.5 7C4.5 7.55312 4.94688 8 5.5 8H14.5C15.0531 8 15.5 7.55312 15.5 7C15.5 6.44688 15.0531 6 14.5 6H5.5ZM5.5 11C4.94688 11 4.5 11.4469 4.5 12C4.5 12.5531 4.94688 13 5.5 13H14.5C15.0531 13 15.5 12.5531 15.5 12C15.5 11.4469 15.0531 11 14.5 11H5.5ZM0 6.25V7.75C0 8.16563 0.334375 8.5 0.75 8.5H2.25C2.66563 8.5 3 8.16563 3 7.75V6.25C3 5.83437 2.66563 5.5 2.25 5.5H0.75C0.334375 5.5 0 5.83437 0 6.25ZM0.75 10.5C0.334375 10.5 0 10.8344 0 11.25V12.75C0 13.1656 0.334375 13.5 0.75 13.5H2.25C2.66563 13.5 3 13.1656 3 12.75V11.25C3 10.8344 2.66563 10.5 2.25 10.5H0.75Z" fill="#2F4858"/>
-              </svg>
-              <p>Formulaires soumis</p>
-            </a>
-          </li>
-          <li>
-             <a href="/deconnexion" id="dec" >
-              <svg width="19" height="20" viewBox="0 0 19 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 0H11C11.5304 0 12.0391 0.210714 12.4142 0.585786C12.7893 0.960859 13 1.46957 13 2V4H11V2H2V18H11V16H13V18C13 18.5304 12.7893 19.0391 12.4142 19.4142C12.0391 19.7893 11.5304 20 11 20H2C1.46957 20 0.960859 19.7893 0.585786 19.4142C0.210714 19.0391 0 18.5304 0 18V2C0 1.46957 0.210714 0.960859 0.585786 0.585786C0.960859 0.210714 1.46957 0 2 0Z" fill="#2F4858"/>
-                <path d="M12.09 13.59L13.5 15L18.5 10L13.5 5L12.09 6.41L14.67 9H5V11H14.67L12.09 13.59Z" fill="#2F4858"/>
-              </svg>             
-              <p>Deconnexion</p> 
-            </a>
-          </li>
-        </ul>
-      </nav> 
-    @if(isset($errors)&& $errors->any())
-                        <div class="alert alert-danger ">
-                          @foreach($errors->all() as $error)
-                          <p>{{$error}}</p>
-                         
-                          @endforeach
-                        </div>
-                      @endif
-    <!--erreur -->
-                      
+            
+        </nav>
+                    <!-- Notifications -->
+                    <div class="dropdown-notif">
+                        <h3>Notifications</h3>
+                        <ul style="list-style-type: none; padding: 0;">
+                            @foreach ($notifications as $notification)
+                                @php
+                                    $data = json_decode($notification->data, true);
+                                @endphp
+                                <li
+                                    style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                    <div style="display: flex; justify-content: space-between;">
+                                        <div>
+                                            <strong style="color: #343a40;">User ID:</strong> <span
+                                                style="color: #495057;">{{ $notification->id_user }}</span><br>
+                                            <strong style="color: #343a40;">Message:</strong> <span
+                                                style="color: #495057;">{{ $data['message'] }}</span><br>
+                                            <strong style="color: #343a40;">Type:</strong> <span
+                                                style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
+                                            <strong style="color: #343a40;">Seen:</strong> <span
+                                                style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
+                                        </div>
+                                        <div>
+                                            <strong style="color: #343a40;">Timestamp:</strong> <span
+                                                style="color: #495057;">{{ $notification->created_at }}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                     <!--Notifications -->
+        @if (isset($errors) && $errors->any())
+            <div class="alert alert-danger ">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+        <!--erreur -->
 
-                      
+
+
 
         @yield('Mid') <!--nom de la section  -->
 
@@ -223,6 +211,17 @@
                 dropdownMenu.classList.remove('open');
             } else {
                 dropdownMenu.classList.add('open');
+            }
+        });
+
+        document.querySelector('.notif-btn').addEventListener('click', function() {
+            var dropdownNotif = document.querySelector('.dropdown-notif');
+            if (dropdownNotif.classList.contains('open')) {
+                dropdownNotif.classList.remove('open');
+                document.querySelector('.notif-btn').classList.remove('open');
+            } else {
+                dropdownNotif.classList.add('open');
+                document.querySelector('.notif-btn').classList.add('open');
             }
         });
     </script>
