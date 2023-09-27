@@ -53,6 +53,7 @@ Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 's
 
 //deconnexion
 Route::get('/deconnexion', function () {
+    Session::forget('usager');
     return redirect('/login');
     
 });

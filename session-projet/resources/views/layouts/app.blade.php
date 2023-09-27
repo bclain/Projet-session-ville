@@ -18,6 +18,7 @@
                 <a id="logo" href="/"><img src="{{ asset('img/logoVille.png') }}" alt="Logo image"></a>
                 <h1>Gestion des formulaires SST</h1>
             </div>
+            @if(Session::has('usager') )
             <nav class="right">
                 <a href="#" class="notif-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="20" viewBox="0 0 16 20"
@@ -54,6 +55,8 @@
                     </svg>
                 </a>
             </nav>
+
+            @endif
 
         </header>
         <nav class="dropdown-menu">
@@ -134,6 +137,7 @@
             
         </nav>
                     <!-- Notifications -->
+@if(Session::has('usager') )
                     <div class="dropdown-notif">
                         <h3>Notifications</h3>
                         <ul style="list-style-type: none; padding: 0;">
@@ -163,7 +167,11 @@
                             @endforeach
                         </ul>
                     </div>
+@endif
                      <!--Notifications -->
+
+
+
         @if (isset($errors) && $errors->any())
             <div class="alert alert-danger ">
                 @foreach ($errors->all() as $error)
