@@ -79,5 +79,15 @@ class FormulairesController extends Controller
                              ->with('error', 'No formulaires found.');
         }
     }
-    
+    public function showAccidentDeTravail()
+    {
+        $formulaire = Formulaire::where('type_forms', 'Accident de travail')->first();
+
+        if ($formulaire) {
+            return view('formulaires.formulaire', compact('formulaire'));  // Assuming you have a view named 'show_accident'
+        } else {
+            return redirect()->route('formulaires.index')
+                             ->with('error', 'No "Accident de travail" form found.');
+        }
+    }
 }

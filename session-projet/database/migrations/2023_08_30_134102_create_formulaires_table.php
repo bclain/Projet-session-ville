@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('num_employe', 255);
             $table->json('data', 2000);
             $table->string('type_forms', 255);
+            $table->boolean('dg')->default(false);
 
             $table->rememberToken();
             $table->timestamps();
