@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\models\Usager;
+use App\models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -67,7 +68,15 @@ class UsagersController extends Controller
      */
     public function show()
     {
-        return View('users.index');
+        $user_id= Session::get('usager')['id'];
+        $notifications = Notification::where('id_user',$user_id)->get();
+        return View('users.index',compact('notifications'));
+    }
+    public function GabNotif()
+    {
+        $user_id= Session::get('usager')['id'];
+        $notifications = Notification::where('id_user',$user_id)->get();
+        return View('layouts.app',compact('notifications'));
     }
 
     /**

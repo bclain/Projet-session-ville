@@ -27,7 +27,7 @@ use App\Models\Usager;
 Route::get('/connexion', function () {
     return view('users.connexion');
 });
-Route::get('/', function () {
+Route::get('/acceuil', function () { //modif
     return view('users.index');
 });
 Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
@@ -43,9 +43,12 @@ Route::get('/ajoutFormulaire', function () {
 Route::post("/login",[UsagersController::class,'login']);
 Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne pour pouvoir rediriger apres la connexion 
 
+Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 'showAccidentDeTravail']);
+
+
 //deconnexion
 Route::get('/deconnexion', function () {
-    Session::forget('user');
-    return redirect('/');
+    Session::forget('usager');
+    return redirect('/login');
     
 });
