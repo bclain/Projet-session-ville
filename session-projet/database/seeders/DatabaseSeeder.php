@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Usagers::class);
         $this->call(Departements::class);
         $this->call(Formulaires::class);
+        $this->call(FormulaireSoumis::class);
         $this->call(Notifications::class);
         $this->call(Procedures::class);
         $this->call(Usagers::class);

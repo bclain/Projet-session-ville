@@ -9,7 +9,7 @@ class FormulaireSoumis extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['num_superieur', 'num_employe', 'data', 'type_forms', 'dg'];
+    protected $fillable = ['num_superieur', 'num_employe', 'data', 'type_forms', 'dg', 'vu'];
     protected $casts = [
         'data' => 'array',
     ];
