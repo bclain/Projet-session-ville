@@ -70,8 +70,10 @@ class UsagersController extends Controller
     {
         $user_id= Session::get('usager')['id'];
         $notifications = Notification::where('id_user',$user_id)->get();
+
         return View('users.index',compact('notifications'));
     }
+    
     public function GabNotif()
     {
         $user_id= Session::get('usager')['id'];

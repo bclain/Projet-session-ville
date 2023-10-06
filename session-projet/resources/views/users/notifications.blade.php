@@ -23,6 +23,7 @@
                     </div>
                     <div>
                         <strong style="color: #343a40;">Timestamp:</strong> <span style="color: #495057;">{{ $notification->created_at }}</span>
+                        
                     </div>
                 </div>
             </li>

@@ -137,7 +137,7 @@
             
         </nav>
                     <!-- Notifications -->
-@if(Session::has('usager') )
+@if(Session::has('usager')  )
                     <div class="dropdown-notif">
                         <h3>Notifications</h3>
                         <ul style="list-style-type: none; padding: 0;">
@@ -145,8 +145,8 @@
                                 @php
                                     $data = json_decode($notification->data, true);
                                 @endphp
-                                <li
-                                    style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                                <a href="{{route('formulaires.show',[$notification->id])}}"> <!-- on passe le forms -->
+                                <li style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div style="display: flex; justify-content: space-between;">
                                         <div>
                                             <strong style="color: #343a40;">User ID:</strong> <span
@@ -164,6 +164,7 @@
                                         </div>
                                     </div>
                                 </li>
+                                </a>
                             @endforeach
                         </ul>
                     </div>

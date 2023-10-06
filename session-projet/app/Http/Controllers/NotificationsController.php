@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\Usager;
 use App\Models\Formulaire;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class NotificationsController extends Controller
 {
@@ -35,17 +39,15 @@ class NotificationsController extends Controller
                         ->with('success', 'Notification created successfully.');
     }
 
-    public function show(string $id)
+    public function show(Notification $notif, Request $req ) 
     {
-        $notification = Notification::find($id);
-        return view('notifications.show', compact('notification'));
+        $user_id= Session::get('usager')['id'];
+        $notifications = Notification::where('id_user',$user_id)->get();
+        return view('formulaires.show', compact('notif','notifications'));
+
     }
 
-    public function edit(string $id)
-    {
-        $notification = Notification::find($id);
-        return view('notifications.edit', compact('notification'));
-    }
+   
 
     public function update(Request $request, string $id)
     {
@@ -62,12 +64,5 @@ class NotificationsController extends Controller
                         ->with('success', 'Notification updated successfully.');
     }
 
-    public function destroy(string $id)
-    {
-        $notification = Notification::find($id);
-        $notification->delete();
-
-        return redirect()->route('notifications.index')
-                        ->with('success', 'Notification deleted successfully.');
-    }
+    
 }
