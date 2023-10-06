@@ -25,7 +25,7 @@
                         fill="none">
                         <path
                             d="M8 19.75C9.1 19.75 10 18.85 10 17.75H6C6 18.2804 6.21071 18.7891 6.58579 19.1642C6.96086 19.5393 7.46957 19.75 8 19.75ZM14 13.75V8.75C14 5.68 12.36 3.11 9.5 2.43V1.75C9.5 0.92 8.83 0.25 8 0.25C7.17 0.25 6.5 0.92 6.5 1.75V2.43C3.63 3.11 2 5.67 2 8.75V13.75L0 15.75V16.75H16V15.75L14 13.75Z"
-                            fill="#1BBF00" />
+                             />
                     </svg>
                 </a>
                 <a href="#" id="menu-btn" class="menu-btn">
@@ -139,13 +139,12 @@
                     <!-- Notifications -->
 @if(Session::has('usager') )
                     <div class="dropdown-notif">
-                        <h3>Notifications</h3>
                         <ul style="list-style-type: none; padding: 0;">
                             @foreach ($notifications as $notification)
                                 @php
                                     $data = json_decode($notification->data, true);
                                 @endphp
-                                <li
+                                {{-- <li
                                     style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                                     <div style="display: flex; justify-content: space-between;">
                                         <div>
@@ -163,6 +162,28 @@
                                                 style="color: #495057;">{{ $notification->created_at }}</span>
                                         </div>
                                     </div>
+                                </li> --}}
+                                <li class="notif">
+                                    <a href="" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
+                                        <div class="notif-content">
+                                            <h3>Nouveau formulaire soumis</h3>
+                                            <p>Jean Paul,</p>
+                                            <p>Formulaire de déclaration d'accident</p>
+                                        </div>
+                                        {!! $notification->vu 
+                                            ? 
+                                            // Si $notification->vu est vrai, afficher le SVG avec le chemin rouge
+    
+                                             '<svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M6.39995 13.0125L0.699951 7.31255L2.12495 5.88755L6.39995 10.1625L15.575 0.987549L17 2.41255L6.39995 13.0125Z" fill="#1BBF00"/>
+                                             </svg>'
+                                            : 
+                                            // Sinon, afficher le SVG avec le chemin vert
+                                            '<svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M19.7071 8.70711C20.0976 8.31658 20.0976 7.68342 19.7071 7.29289L13.3431 0.928932C12.9526 0.538408 12.3195 0.538408 11.9289 0.928932C11.5384 1.31946 11.5384 1.95262 11.9289 2.34315L17.5858 8L11.9289 13.6569C11.5384 14.0474 11.5384 14.6805 11.9289 15.0711C12.3195 15.4616 12.9526 15.4616 13.3431 15.0711L19.7071 8.70711ZM0 9H19V7H0V9Z" fill="#FF1F00"/>
+                                             </svg>' 
+                                             !!}
+                                    </a>
                                 </li>
                             @endforeach
                         </ul>
@@ -215,6 +236,8 @@
     <script>
         document.querySelector('.menu-btn').addEventListener('click', function() {
             var dropdownMenu = document.querySelector('.dropdown-menu');
+            var dropdownNotif = document.querySelector('.dropdown-notif');
+            dropdownNotif.classList.remove('open');
             if (dropdownMenu.classList.contains('open')) {
                 dropdownMenu.classList.remove('open');
             } else {
@@ -223,7 +246,9 @@
         });
 
         document.querySelector('.notif-btn').addEventListener('click', function() {
+            var dropdownMenu = document.querySelector('.dropdown-menu');
             var dropdownNotif = document.querySelector('.dropdown-notif');
+            dropdownMenu.classList.remove('open');
             if (dropdownNotif.classList.contains('open')) {
                 dropdownNotif.classList.remove('open');
                 document.querySelector('.notif-btn').classList.remove('open');

@@ -163,6 +163,37 @@ header .menu-btn{
   pointer-events:initial;
 }
 
+.dropdown-notif .notif a{
+  justify-content: space-between;
+  border-radius: 10px;
+  background: #FFF;
+  display: flex;
+  padding: 5px 10px;
+  align-items: center;
+  gap: 5px;
+}
+
+.dropdown-notif ul{
+  gap: 5px;
+  width: 100%;
+  display: flex;
+  max-width: 800px;
+  flex-direction: column;
+}
+
+.notif-btn svg{
+  fill: rgb(27, 191, 0);
+}
+
+
+.notif-btn.open svg{
+  fill: white;
+}
+
+.notif-btn.open{
+  background-color: rgb(27, 191, 0);
+}
+
 .dropdown-menu.open{
   opacity: 1;
   transition: 200ms ease-in-out;
