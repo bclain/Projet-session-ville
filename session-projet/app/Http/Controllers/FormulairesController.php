@@ -21,8 +21,6 @@ class FormulairesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'num_superieur' => 'required|max:255',
-            'num_employe' => 'required|max:255',
             'data' => 'required',
             'type_forms' => 'required|max:255',
         ]);
@@ -48,8 +46,6 @@ class FormulairesController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'num_superieur' => 'required|max:255',
-            'num_employe' => 'required|max:255',
             'data' => 'required',
             'type_forms' => 'required|max:255',
         ]);

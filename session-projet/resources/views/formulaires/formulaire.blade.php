@@ -27,13 +27,13 @@
                     @if($field['type'] === 'time')
                         <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @elseif($field['type'] === 'h1')
-                        <h1>{{ $field['value'] }}</h1>
+                        <h1>{{ $field['label'] }}</h1>
                     @elseif($field['type'] === 'h2')
-                        <h2>{{ $field['value'] }}</h2>
+                        <h2>{{ $field['label'] }}</h2>
                     @elseif($field['type'] === 'h3')
-                        <h3>{{ $field['value'] }}</h3>
+                        <h3>{{ $field['label'] }}</h3>
                     @elseif($field['type'] === 'p')
-                        <span>{{ $field['value'] }}</span>
+                        <span>{{ $field['label'] }}</span>
                     @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
                         <input type="{{ $field['type'] }}" id="{{ $field['id'] }}" name="{{ $field['label'] }}" value="{{ $field['value'] }}" class="form-control">
                     @endif
