@@ -31,15 +31,13 @@ class FormulairesController extends Controller
                         ->with('success', 'Formulaire created successfully.');
     }
 
-    public function show(string $id)
+    public function show(Formulaire $formulaire)
     {
-        $formulaire = Formulaire::find($id);
         return view('formulaires.show', compact('formulaire'));
     }
-
-    public function edit(string $id)
+    
+    public function edit(Formulaire $formulaire)
     {
-        $formulaire = Formulaire::find($id);
         return view('formulaires.edit', compact('formulaire'));
     }
 

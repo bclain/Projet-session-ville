@@ -27,25 +27,28 @@ class UsagersController extends Controller
             return redirect('/');
         } 
     }
-    //debut
-    function login(Request $req)
+    public function login(Request $req)
     {
         $req->validate([
-            'nom'=>'required',          
-            'password'=>'required',
-        ]); 
-        $usager =Usager::where(['nom'=>$req->nom])->first();
-        if(! $usager || ! Hash::check($req->password,$usager->password))
-        {
-            return redirect('/login');
-            
-        }
-        else{
-            $req->session()->put('usager',$usager);
-            return redirect('/home'); //redirection apres connection
+            'nom' => 'required',
+            'password' => 'required',
+        ]);
+
+        $usager = Usager::where(['nom' => $req->nom])->first();
+
+        if (!$usager || !Hash::check($req->password, $usager->password)) {
+            return redirect()->route('connexion');
+        } else {
+            $req->session()->put('usager', $usager);
+            return redirect()->route('home');
         }
     }
-    //fin
+
+    public function logout()
+    {
+        Session::forget('usager');
+        return redirect()->route('connexion');
+    }
 
     /**
      * Show the form for creating a new resource.
