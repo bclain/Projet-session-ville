@@ -15,17 +15,19 @@ class UsagersController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Usager $usager, Request $req)
+    public function index(Request $req)
     {
-        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        if($req->session()->has('usager'))  //IMPORTANT verification 
         {
-            $usagers=Usager::all();
-            return view('users.connexion',compact('usagers'));
+            $usagers = Usager::all();
+            $user_id = Session::get('usager')['id'];
+            $notifications = Notification::where('id_user', $user_id)->get();
+            return view('users.connexion', compact('usagers', 'notifications'));
         }
         else
         {
             return redirect('/');
-        } 
+        }
     }
     public function login(Request $req)
     {
@@ -37,7 +39,7 @@ class UsagersController extends Controller
         $usager = Usager::where(['nom' => $req->nom])->first();
 
         if (!$usager || !Hash::check($req->password, $usager->password)) {
-            return redirect()->route('connexion');
+            return redirect()->route('connexion.get');
         } else {
             $req->session()->put('usager', $usager);
             return redirect()->route('home');
@@ -47,7 +49,8 @@ class UsagersController extends Controller
     public function logout()
     {
         Session::forget('usager');
-        return redirect()->route('connexion');
+        return redirect()->route('connexion.get');
+
     }
 
     /**

@@ -10,7 +10,7 @@
     <img src="{{ asset('img/logoVille.png') }}" alt="Logo image">
 
 
-      <form action="/login" method="post" >
+    <form action="{{ route('connexion.post') }}" method="post">
       @csrf
       <h2 >Connexion</h2>
         <div class="input">
