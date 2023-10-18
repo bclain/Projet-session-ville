@@ -9,7 +9,7 @@ class Formulaire extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['num_superieur', 'num_employe', 'data', 'type_forms', 'dg'];
+    protected $fillable = ['data', 'type_forms', 'dg'];
     protected $casts = [
         'data' => 'array',
     ];

@@ -14,8 +14,6 @@ class Formulaires extends Seeder
     {
         $formulaires = [
             [
-                'num_superieur' => '1',
-                'num_employe' => '2',
                 'data' => [
                     'fields' => [
                         ['type' => 'checkbox', 'label' => 'Ouvrir', 'value' => false, 'id' => 'ouvrir'],
@@ -32,8 +30,6 @@ class Formulaires extends Seeder
                 'type_forms' => 'Type 1'
             ],
             [
-                'num_superieur' => '2',
-                'num_employe' => '3',
                 'data' => [
                     'fields' => [
                         ['type' => 'text', 'label' => 'Nom', 'value' => 'Jane'],
@@ -47,8 +43,6 @@ class Formulaires extends Seeder
                 'type_forms' => 'Type 2'
             ],
             [
-                'num_superieur' => '1',
-                'num_employe' => '2',
                 'data' => [
                     'fields' => [
                         ['type' => 'h3', 'label' => '', 'value' => 'Identification', 'id' => '', 'dg' => false],
@@ -100,8 +94,6 @@ class Formulaires extends Seeder
 
         foreach ($formulaires as $formulaire) {
             DB::table('formulaires')->insert([
-                'num_superieur' => $formulaire['num_superieur'],
-                'num_employe' => $formulaire['num_employe'],
                 'data' => json_encode($formulaire['data']),
                 'type_forms' => $formulaire['type_forms'],
                 'created_at' => now(),
