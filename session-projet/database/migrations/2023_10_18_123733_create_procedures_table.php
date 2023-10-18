@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formulaires', function (Blueprint $table) {
+        Schema::create('formulaire_soumis', function (Blueprint $table) {
             $table->id();
-            $table->json('data', 2000);
-            $table->string('type_forms', 255);
-            $table->boolean('dg')->default(false);
-
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formulaires');
+        Schema::dropIfExists('formulaire_soumis');
     }
 };
