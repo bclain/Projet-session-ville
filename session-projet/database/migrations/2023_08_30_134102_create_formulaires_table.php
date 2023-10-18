@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('formulaires', function (Blueprint $table) {
             $table->id();
+            $table->string('num_superieur', 255);
+            $table->string('num_employe', 255);
             $table->json('data', 2000);
             $table->string('type_forms', 255);
             $table->boolean('dg')->default(false);
