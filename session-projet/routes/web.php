@@ -50,6 +50,9 @@ Route::get('/home',[UsagersController::class,'show']);  //modifier cette ligne p
 
 Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 'showAccidentDeTravail']);
 
+Route::get('/formulaire-soumis/{id}', [FormulairesController::class, 'show']);
+
+
 
 //deconnexion
 Route::get('/deconnexion', function () {
