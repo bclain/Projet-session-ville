@@ -32,12 +32,12 @@ class Formulaires extends Seeder
             [
                 'data' => [
                     'fields' => [
-                        ['type' => 'text', 'label' => 'Nom', 'value' => 'Jane'],
-                        ['type' => 'email', 'label' => 'Email', 'value' => 'jane@example.com'],
-                        ['type' => 'date', 'label' => 'Date d\'embauche', 'value' => '2020-01-01'],
-                        ['type' => 'textarea', 'label' => 'Description', 'value' => 'Description ici'],
-                        ['type' => 'text', 'label' => 'Ville', 'value' => 'Paris'],
-                        ['type' => 'text', 'label' => 'Code Postal', 'value' => '75000'],
+                        ['type' => 'text', 'label' => 'Nom', 'value' => 'Jane', 'id' => '0'],
+                        ['type' => 'email', 'label' => 'Email', 'value' => 'jane@example.com', 'id' => '1'],
+                        ['type' => 'date', 'label' => 'Date d\'embauche', 'value' => '2020-01-01', 'id' => '2'],
+                        ['type' => 'textarea', 'label' => 'Description', 'value' => 'Description ici', 'id' => '3'],
+                        ['type' => 'text', 'label' => 'Ville', 'value' => 'Paris', 'id' => '4'],
+                        ['type' => 'text', 'label' => 'Code Postal', 'value' => '75000', 'id' => '5'],
                     ]
                 ],
                 'type_forms' => 'Type 2'
@@ -45,7 +45,7 @@ class Formulaires extends Seeder
             [
                 'data' => [
                     'fields' => [
-                        ['type' => 'h3', 'label' => '', 'value' => 'Identification', 'id' => '', 'dg' => false],
+                        ['type' => 'h3', 'label' => '', 'value' => 'Identification', 'id' => '0', 'dg' => false],
                         ['type' => 'text', 'label' => 'Nom de l\'employé', 'value' => '', 'id' => '1', 'dg' => false],
                         ['type' => 'text', 'label' => 'Fonction au moment de l\'évènement', 'value' => '', 'id' => '2', 'dg' => false],
                         ['type' => 'text', 'label' => 'Matricule', 'value' => '', 'id' => '3', 'dg' => false],

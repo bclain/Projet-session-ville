@@ -81,7 +81,7 @@ class FormulairesController extends Controller
     }
     public function showAccidentDeTravail()
     {
-        $formulaire = Formulaire::where('type_forms', 'Accident de travail')->first();
+        $formulaire = Formulaire::where('type_forms', 'Type 2')->first();
 
         if ($formulaire) {
             return view('formulaires.formulaire', compact('formulaire'));  // Assuming you have a view named 'show_accident'

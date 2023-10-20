@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
+            $table->string('id_formulaire_soumis')->default('0');
             $table->json('data', 2000);
             $table->boolean('vu')->default(false);
 
