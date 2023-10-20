@@ -62,6 +62,7 @@ a{
 
 a:hover{
   transform: scale(1.05);
+  border: var(--link) 0.5px solid;
   transition: 200ms ease-in-out;
 }
 
