@@ -1,4 +1,3 @@
 - Manque les id de département et les lier avec les users
 - Cloche Rouge
 - icon hamburger qui bug
-- mettre gras pour les lus
