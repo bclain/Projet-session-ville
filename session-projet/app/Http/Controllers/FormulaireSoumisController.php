@@ -11,14 +11,13 @@ class FormulaireSoumisController extends Controller
     public function show(string $id)
     {
         $formulaireSoumis = FormulaireSoumis::find($id);
-        
-        if (!$formulaireSoumis) {
-            // Ici, vous pouvez rediriger vers une page d'erreur ou une autre page si le formulaire n'est pas trouvé
+        if ($formulaireSoumis) {
+            return view('formulaires.formulaire_soumis', compact('formulaireSoumis'));
+        }else{
             return redirect()->route('users.index') //erreur 
                              ->with('error', "Aucun formulaire trouvé");
         }
         
-        return view('formulaires.formulaire_soumis', compact('formulaireSoumis'));
     }
     
 

@@ -1,5 +1,3 @@
-@extends('layouts.header')
-
 @section('content')
     <div class="container">
         <h1>{{ $formulaireSoumis->type_forms }}</h1>
