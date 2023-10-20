@@ -147,7 +147,7 @@
                                 <li class="notif">
                                     <a href="{{ url('/formulaire-soumis/' . $notification->id_formulaire_soumis) }}" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
                                         <div class="notif-content">
-                                            <h3>Nouveau formulaire soumis</h3>
+                                            <h3 style="font-weight: {{ $notification->vu ? '500' : '700' }};">Nouveau formulaire soumis</h3>
                                             <p>Jean Paul,</p>
                                             <p>Formulaire de déclaration d'accident</p>
                                         </div>
