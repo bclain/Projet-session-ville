@@ -17,14 +17,16 @@ class Notifications extends Seeder
     {
         // Assuming you have users with IDs 1 to 5
         $user_ids = [1, 2, 3, 4, 5];
+        $formulaires_soumis_ids = [1, 2, 3];
 
         // Create 100 notifications in total
         for ($i = 0; $i < 100; $i++) {
             $random_user_id = $user_ids[array_rand($user_ids)];
+            $random_form_soumis_id = $formulaires_soumis_ids[array_rand($formulaires_soumis_ids)];
 
             DB::table('notifications')->insert([
                 'id_user' => $random_user_id,
-                'id_user' => $random_user_id,
+                'id_formulaire_soumis' => $random_form_soumis_id,
                 'data' => json_encode(['message' => 'This is a test notification', 'type' => 'info']),
                 'vu' => rand(0, 1),  // Randomly set the notification as seen or not
                 'created_at' => now(),
