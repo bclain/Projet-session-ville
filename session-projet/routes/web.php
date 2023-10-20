@@ -4,6 +4,7 @@ use App\Http\Controllers\ProceduresController;
 use App\Http\Controllers\NotificationsController;
 use App\Http\Controllers\FormulairesController;
 use App\Http\Controllers\DepartementsController;
+use App\Http\Controllers\FormulaireSoumisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,11 +36,6 @@ Route::get('/connexion', function () {
 });
 Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
 Route::get('/notifications', [Notifications::class, 'index']);
-
-Route::get('/notifications', function () {
-    $notifications = Notification::all();
-    return view('users.notifications', compact('notifications'));
-});
 
 Route::get('/ajoutFormulaire', function () {
     return view('formulaires.ajoutFormulaire');
