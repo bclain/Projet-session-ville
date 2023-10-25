@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class FormulaireSoumis extends Seeder
 {
@@ -74,12 +75,12 @@ class FormulaireSoumis extends Seeder
             
         ];
 
-        foreach ($formulaires as $formulaire) {
-            DB::table('formulaires')->insert([
-                'num_superieur' => $formulaire['num_superieur'],
-                'num_employe' => $formulaire['num_employe'],
-                'data' => json_encode($formulaire['data']),
-                'type_forms' => $formulaire['type_forms'],
+        foreach ($formulaireSoumis as $formulaireSoumis) {
+            DB::table('formulaireSoumis')->insert([
+                'num_superieur' => $formulaireSoumis['num_superieur'],
+                'num_employe' => $formulaireSoumis['num_employe'],
+                'data' => json_encode($formulaireSoumis['data']),
+                'type_forms' => $formulaireSoumis['type_forms'],
                 'created_at' => now(),
                 'updated_at' => now()
             ]);

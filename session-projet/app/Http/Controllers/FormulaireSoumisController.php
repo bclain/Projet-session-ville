@@ -14,34 +14,9 @@ class FormulaireSoumisController extends Controller
         if ($formulaireSoumis) {
             return view('formulaires.formulaire_soumis', compact('formulaireSoumis'));
         }else{
-            return redirect()->route('users.index') //erreur 
+            return redirect()->route('usagers.show') //erreur 
                              ->with('error', "Aucun formulaire trouvé");
         }
         
-    }
-    
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

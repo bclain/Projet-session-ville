@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formulaire_soumis', function (Blueprint $table) {
+        Schema::create('formulaireSoumis', function (Blueprint $table) {
         $table->id();
         $table->string('num_superieur', 255);
         $table->string('num_employe', 255);
         $table->json('data', 2000);
         $table->string('type_forms', 255);
         $table->boolean('dg')->default(false);
+
+        $table->rememberToken();
+        $table->timestamps();
         });
     }
     /**
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('formulaire_soumis');
+        Schema::dropIfExists('formulaireSoumis');
     }
 };
