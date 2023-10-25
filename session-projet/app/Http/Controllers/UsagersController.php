@@ -42,7 +42,7 @@ class UsagersController extends Controller
         }
         else{
             $req->session()->put('usager',$usager);
-            return redirect('/home'); //redirection apres connection
+            return redirect('/'); //redirection apres connection
         }
     }
     //fin

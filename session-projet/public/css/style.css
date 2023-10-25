@@ -406,6 +406,16 @@ input, select {
   background: linear-gradient(180deg, #E4F3FF 0%, rgba(255, 255, 255, 0.00) 100%);
 }
 
+.form-group{
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label{
+  display: flex;
+  flex-direction: column;
+}
+
 @media only screen and (max-width: 600px){
   section{
     width: 90%;
