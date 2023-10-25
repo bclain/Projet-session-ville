@@ -26,22 +26,11 @@ use App\Models\Usager;
 
 
 
-Route::get('/connexion', function () {
-    return view('users.connexion');
-});
-Route::get('/notifications', [Notifications::class, 'index']);
-Route::post("/login",[UsagersController::class,'login']);
-Route::get('/accueil',[UsagersController::class,'show'])->name('users.index');
 
-Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 'showAccidentDeTravail']);
-
-Route::get('/formulaire-soumis/{id}', [FormulaireSoumisController::class, 'show']);
-
-
-
-//deconnexion
-Route::get('/deconnexion', function () {
-    Session::forget('usager');
-    return redirect('/login');
-    
-});
+Route::get('/notifications',[NotificationsController::class, 'index'])      ->name('notifications.index');
+Route::get('/accueil',      [UsagersController::class,'show'])              ->name('usagers.show');
+Route::post('/connexion',   [UsagersController::class,'login'])             ->name('usagers.login');
+Route::get('/connexion',    [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
+Route::get('/deconnexion',  [UsagersController::class, 'logout'])           ->name('usagers.logout');
+Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
+Route::get('/formulaire-soumis/{id}',           [FormulaireSoumisController::class, 'show']) ->name('formulairesSoumis.show');

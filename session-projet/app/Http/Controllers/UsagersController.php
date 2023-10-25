@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\models\Usager;
-use App\models\Notification;
+use App\Models\Usager;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -27,7 +27,6 @@ class UsagersController extends Controller
             return redirect('/');
         } 
     }
-    //debut
     function login(Request $req)
     {
         $req->validate([
@@ -37,35 +36,19 @@ class UsagersController extends Controller
         $usager =Usager::where(['nom'=>$req->nom])->first();
         if(! $usager || ! Hash::check($req->password,$usager->password))
         {
-            return redirect('/login');
+            return redirect('/connexion');
             
         }
         else{
             $req->session()->put('usager',$usager);
-            return redirect('/home'); //redirection apres connection
+            return redirect('/accueil'); //redirection apres connection
         }
     }
-    //fin
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function logout(Request $request)
     {
-        //
+        $request->session()->forget('usager');
+        return redirect('/connexion');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show()
     {
         $user_id= Session::get('usager')['id'];
@@ -78,28 +61,8 @@ class UsagersController extends Controller
         $notifications = Notification::where('id_user',$user_id)->get();
         return View('layouts.app',compact('notifications'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function showLoginForm()
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('users.connexion');  // Ensure the view path is correct.
     }
 }
