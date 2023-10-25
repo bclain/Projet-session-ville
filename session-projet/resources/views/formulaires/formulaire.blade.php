@@ -1,7 +1,6 @@
-
 @extends('layouts.app')
 
-@section('content')
+@section('Mid')
 <section>
     <div class="contain">
         <h1>{{ $formulaire->type_forms }}</h1>

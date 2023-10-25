@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Formulaire;
+use App\models\Usager;
+use App\models\Notification;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+
 
 class FormulairesController extends Controller
 {
@@ -81,10 +88,14 @@ class FormulairesController extends Controller
     }
     public function showAccidentDeTravail()
     {
-        $formulaire = Formulaire::where('type_forms', 'Accident de travail')->first();
 
+        $formulaire = Formulaire::where('type_forms', 'Accident de travail')->first();    
+        $user_id= Session::get('usager')['id'];
+        $notifications = Notification::where('id_user',$user_id)->get();
+        
         if ($formulaire) {
-            return view('formulaires.formulaire', compact('formulaire'));  // Assuming you have a view named 'show_accident'
+
+            return view('formulaires.formulaire', compact('formulaire','notifications'));  // Assuming you have a view named 'show_accident'
         } else {
             return redirect()->route('users.index') //erreur 
                              ->with('error', 'No "Accident de travail" form found.');
