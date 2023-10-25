@@ -29,9 +29,20 @@ use App\Models\Usager;
 Route::get('/connexion', function () {
     return view('users.connexion');
 });
-Route::get('/notifications', [Notifications::class, 'index']);
+Route::get('/first-formulaire', [FormulairesController::class, 'showFirst']);
+
+
+Route::get('/notifications', function () {
+    $notifications = Notification::all();
+    return view('users.notifications', compact('notifications'));
+});
+
+Route::get('/ajoutFormulaire', function () {
+    return view('formulaires.ajoutFormulaire');
+});
+
 Route::post("/login",[UsagersController::class,'login']);
-Route::get('/accueil',[UsagersController::class,'show'])->name('users.index');
+Route::get('/',[UsagersController::class,'show']);  //modifier cette ligne pour pouvoir rediriger apres la connexion 
 
 Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 'showAccidentDeTravail']);
 
