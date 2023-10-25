@@ -1,7 +1,9 @@
-@extends('layouts.header')
+
+@extends('layouts.app')
 
 @section('content')
-    <div class="container">
+<section>
+    <div class="contain">
         <h1>{{ $formulaire->type_forms }}</h1>
 
         <form action="#" method="post">
@@ -44,6 +46,7 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
+</section>
 @endsection
 
 
