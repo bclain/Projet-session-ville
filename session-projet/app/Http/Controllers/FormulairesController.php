@@ -39,7 +39,7 @@ class FormulairesController extends Controller
         return redirect()->route('formulaires.index')
                         ->with('success', 'Formulaire created successfully.');
     }
-
+//ca se repete Verification
     public function show(string $id)
     {
         $formulaire = Formulaire::find($id);
@@ -51,7 +51,7 @@ class FormulairesController extends Controller
         $formulaire = Formulaire::find($id);
         return view('formulaires.edit', compact('formulaire'));
     }
-
+//
     public function update(Request $request, string $id)
     {
         $request->validate([
@@ -67,7 +67,7 @@ class FormulairesController extends Controller
         return redirect()->route('formulaires.index')
                         ->with('success', 'Formulaire updated successfully.');
     }
-
+//Verification 
     public function destroy(string $id)
     {
         $formulaire = Formulaire::find($id);
@@ -76,6 +76,7 @@ class FormulairesController extends Controller
         return redirect()->route('users.index') //erreur 
                         ->with('success', 'Formulaire deleted successfully.');
     }
+    //Ne sert a rien 
     public function showFirst()
     {
         $formulaire = Formulaire::first();
@@ -86,6 +87,7 @@ class FormulairesController extends Controller
                              ->with('error', 'No formulaires found.');
         }
     }
+    //Important ++
     public function showAccidentDeTravail()
     {
 

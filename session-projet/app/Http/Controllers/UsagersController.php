@@ -49,18 +49,23 @@ class UsagersController extends Controller
         $request->session()->forget('usager');
         return redirect('/connexion');
     }
+
+    //Notif 
     public function show()
     {
         $user_id= Session::get('usager')['id'];
         $notifications = Notification::where('id_user',$user_id)->get();
         return View('users.index',compact('notifications'));
     }
+     //Notif 
     public function GabNotif()
     {
         $user_id= Session::get('usager')['id'];
         $notifications = Notification::where('id_user',$user_id)->get();
         return View('layouts.app',compact('notifications'));
     }
+    
+    
     public function showLoginForm()
     {
         return view('users.connexion');  // Ensure the view path is correct.

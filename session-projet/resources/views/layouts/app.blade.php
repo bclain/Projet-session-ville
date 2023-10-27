@@ -144,7 +144,7 @@
             @php
                 $data = json_decode($notification->data, true);
             @endphp
-            {{-- <li
+            {{--<li
                 style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                 <div style="display: flex; justify-content: space-between;">
                     <div>
@@ -164,10 +164,11 @@
                 </div>
             </li> --}}
             <li class="notif">
-                <a href="{{ url('/formulaire-soumis/' . $notification->id_formulaire_soumis) }}" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
+                <!-- lien d affichage du fromulaire-->
+                <a href="{{ url('/formulaire-soumis/' . $notification->id) }}" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
                     <div class="notif-content">
                         <h3 style="font-weight: {{ $notification->vu ? '500' : '700' }};">Nouveau formulaire soumis</h3>
-                        <p>Jean Paul,</p>
+                        <p>Jean Paul,{{ $notification->id_user }}</p>
                         <p>Formulaire de déclaration d'accident</p>
                     </div>
                     {!! $notification->vu 

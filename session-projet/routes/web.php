@@ -33,4 +33,7 @@ Route::post('/connexion',   [UsagersController::class,'login'])             ->na
 Route::get('/connexion',    [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
 Route::get('/deconnexion',  [UsagersController::class, 'logout'])           ->name('usagers.logout');
 Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
-Route::get('/formulaire-soumis/{id}',           [FormulaireSoumisController::class, 'show']) ->name('formulairesSoumis.show');
+
+//fprmulaire 
+Route::get('/formulaire-soumis/{id}',[FormulaireSoumisController::class, 'show']) 
+            ->name('formulairesSoumis.show');
