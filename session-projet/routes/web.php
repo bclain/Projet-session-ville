@@ -24,7 +24,7 @@ use App\Models\Procedure;
 use App\Models\Usager;
 
 
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('users.connexion');
 });
 Route::get('/acceuil', function () { //modif
@@ -54,6 +54,6 @@ Route::get('/formulaires/accident-de-travail', [FormulairesController::class, 's
 //deconnexion
 Route::get('/deconnexion', function () {
     Session::forget('usager');
-    return redirect('/login');
+    return redirect('/');
     
 });
