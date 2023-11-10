@@ -1,13 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Usager;
-use App\Models\Notification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Models\Usager;
+use App\Models\Notification;
+use App\Models\FormulaireSoumis;
+use App\Models\Formulaire;
 
 
 class UsagersController extends Controller
@@ -53,16 +56,27 @@ class UsagersController extends Controller
     //Notif 
     public function show()
     {
-        $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
+        $user_id= Session::get('usager')['id'];      
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+
         return View('users.index',compact('notifications'));
     }
      //Notif 
     public function GabNotif()
     {
         $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
-        return View('layouts.app',compact('notifications'));
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+        return View('layouts.app',compact('notifications','InfNotif'));
     }
     
     

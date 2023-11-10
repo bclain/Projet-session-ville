@@ -29,11 +29,16 @@ use App\Models\Usager;
 
 Route::get('/notifications',[NotificationsController::class, 'index'])      ->name('notifications.index');
 Route::get('/accueil',      [UsagersController::class,'show'])              ->name('usagers.show');
-Route::post('/connexion',   [UsagersController::class,'login'])             ->name('usagers.login');
-Route::get('/connexion',    [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
+
 Route::get('/deconnexion',  [UsagersController::class, 'logout'])           ->name('usagers.logout');
 Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
 
-//fprmulaire 
+
+//connexion
+Route::post('/connexion',   [UsagersController::class,'login'])
+             ->name('usagers.login');
+Route::get('/connexion',    [UsagersController::class, 'showLoginForm'])
+            ->name('usagers.showLoginForm');
+//formulaire 
 Route::get('/formulaire-soumis/{id}',[FormulaireSoumisController::class, 'show']) 
             ->name('formulairesSoumis.show');
