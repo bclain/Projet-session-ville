@@ -144,32 +144,14 @@
             @php
                 $data = json_decode($notification->data, true);
             @endphp
-            {{--<li
-                style="margin-bottom: 20px; padding: 15px; background-color: {{ $notification->vu ? '#f4f4f4' : '#e6f7ff' }}; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
-                <div style="display: flex; justify-content: space-between;">
-                    <div>
-                        <strong style="color: #343a40;">User ID:</strong> <span
-                            style="color: #495057;">{{ $notification->id_user }}</span><br>
-                        <strong style="color: #343a40;">Message:</strong> <span
-                            style="color: #495057;">{{ $data['message'] }}</span><br>
-                        <strong style="color: #343a40;">Type:</strong> <span
-                            style="color: {{ $data['type'] === 'info' ? '#17a2b8' : '#dc3545' }};">{{ ucfirst($data['type']) }}</span><br>
-                        <strong style="color: #343a40;">Seen:</strong> <span
-                            style="color: {{ $notification->vu ? '#28a745' : '#dc3545' }};">{{ $notification->vu ? 'Yes' : 'No' }}</span><br>
-                    </div>
-                    <div>
-                        <strong style="color: #343a40;">Timestamp:</strong> <span
-                            style="color: #495057;">{{ $notification->created_at }}</span>
-                    </div>
-                </div>
-            </li> --}}
+           
             <li class="notif">
                 <!-- lien d affichage du fromulaire-->
                 <a href="{{ url('/formulaire-soumis/' . $notification->id) }}" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
                     <div class="notif-content">
-                        <h3 style="font-weight: {{ $notification->vu ? '500' : '700' }};">Nouveau formulaire soumis</h3>
-                        <p>Jean Paul,{{ $notification->id_user }}</p>
-                        <p>Formulaire de déclaration d'accident</p>
+                        <h3 style="font-weight: {{ $notification->vu ? '500' : '700' }};"><p>{{$notification->type_forms }}</p></h3>
+                        <p>{{$notification->nom }}</p>                        
+                        
                     </div>
                     {!! $notification->vu 
                         ? 
@@ -216,7 +198,7 @@
             </div>
             <div class="sub-links">
                 <ul>
-                    Normalement c'est les aspect legaux et tout
+                    x
                 </ul>
             </div>
         </section>
@@ -225,7 +207,7 @@
 
         <!-- FOOTER -->
         <footer>
-            <p> Zakaria , Brice, Antoine, Inc.</p>
+            <p> Zakaria , jerome, Antoine, Inc.</p>
             <p> Projet ville </p>
         </footer>
     </div>

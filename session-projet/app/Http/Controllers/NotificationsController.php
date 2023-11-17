@@ -3,9 +3,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Models\Usager;
+use App\Models\FormulaireSoumis;
 use App\Models\Formulaire;
 
 class NotificationsController extends Controller
@@ -13,6 +17,8 @@ class NotificationsController extends Controller
     public function index()
     {
         $notifications = Notification::all();
+        
+
         return view('notifications.show', compact('notifications'));
     }    
 
@@ -41,26 +47,6 @@ class NotificationsController extends Controller
         return view('notifications.show', compact('notification'));
     }
 
-    public function edit(string $id)
-    {
-        $notification = Notification::find($id);
-        return view('notifications.edit', compact('notification'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'id_user' => 'required|exists:usagers,id',
-            'data' => 'required',
-            'vu' => 'required|boolean',
-        ]);
-
-        $notification = Notification::find($id);
-        $notification->update($request->all());
-
-        return redirect()->route('notifications.index')
-                        ->with('success', 'Notification updated successfully.');
-    }
 
     public function destroy(string $id)
     {
