@@ -11,6 +11,7 @@ use App\Models\Usager;
 use App\Models\Notification;
 use App\Models\FormulaireSoumis;
 use App\Models\Formulaire;
+use App\Models\Procedure;
 
 
 class UsagersController extends Controller
@@ -56,6 +57,7 @@ class UsagersController extends Controller
     //Notif 
     public function show()
     {
+        $procedures = Procedure::all();
         $user_id= Session::get('usager')['id'];      
         $notifications = DB::table('notifications')
         ->where('notifications.id_user',$user_id)
@@ -63,8 +65,7 @@ class UsagersController extends Controller
         ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
         ->select('formulairesoumis.*','usagers.*','notifications.*')
         ->get();
-
-        return View('users.index',compact('notifications'));
+        return View('users.index',compact('notifications','procedures'));
     }
      //Notif 
     public function GabNotif()

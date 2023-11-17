@@ -9,8 +9,8 @@ class ProceduresController extends Controller
 {
     public function index()
     {
-        $procedures = Procedure::all();
-        return view('formulaires.ajoutProcedure', compact('procedures'));
+       
+        return 'hh';
     }
 
     public function create()
@@ -31,11 +31,7 @@ class ProceduresController extends Controller
                         ->with('success', 'Procedure created successfully.');
     }
 
-    public function show(string $id)
-    {
-        $procedure = Procedure::find($id);
-        return view('procedures.show', compact('procedure'));
-    }
+   
 
     public function edit(string $id)
     {
@@ -53,8 +49,7 @@ class ProceduresController extends Controller
         $procedure = Procedure::find($id);
         $procedure->update($request->all());
 
-        return redirect()->route('procedures.index')
-                        ->with('success', 'Procedure updated successfully.');
+        return 'test';
     }
 
     public function destroy(string $id)
@@ -62,7 +57,6 @@ class ProceduresController extends Controller
         $procedure = Procedure::find($id);
         $procedure->delete();
 
-        return redirect()->route('procedures.index')
-                        ->with('success', 'Procedure deleted successfully.');
+        return 'test';
     }
 }
