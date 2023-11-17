@@ -27,21 +27,22 @@ use App\Models\Usager;
 
 
 
-Route::get('/notifications',    [NotificationsController::class, 'index'])      ->name('notifications.index');
-Route::get('/accueil',          [UsagersController::class,'show'])              ->name('usagers.show');
-Route::get('/creerProcedure',   [ProceduresController::class,'create'])         ->name('procedures.create');
-Route::post('/creerProcedure',  [ProceduresController::class,'store'])          ->name('procedures.store');
-Route::post('/connexion',       [UsagersController::class,'login'])             ->name('usagers.login');
-Route::get('/connexion',        [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
-Route::get('/deconnexion',      [UsagersController::class, 'logout'])           ->name('usagers.logout');
-Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
 
 
-//connexion
-Route::post('/connexion',   [UsagersController::class,'login'])
-             ->name('usagers.login');
-Route::get('/connexion',    [UsagersController::class, 'showLoginForm'])
-            ->name('usagers.showLoginForm');
-//formulaire 
-Route::get('/formulaire-soumis/{id}',[FormulaireSoumisController::class, 'show']) 
-            ->name('formulairesSoumis.show');
+Route::get('/notifications',[NotificationsController::class, 'index'])      
+        ->name('notifications.index');
+//page acceuil
+Route::get('/accueil',      
+        [UsagersController::class,'show'])->name('usagers.show');
+//connxion 
+Route::post('/connexion',   
+        [UsagersController::class,'login'])->name('usagers.login');
+Route::get('/connexion',    
+        [UsagersController::class, 'showLoginForm'])->name('usagers.showLoginForm');
+Route::get('/deconnexion',  
+        [UsagersController::class, 'logout'])->name('usagers.logout');
+Route::get('/formulaires/accident-de-travail',
+        [FormulairesController::class, 'showAccidentDeTravail']);
+Route::get('/formulaire-soumis/{id}',           
+        [FormulaireSoumisController::class, 'show'])->name('formulairesSoumis.show');
+
