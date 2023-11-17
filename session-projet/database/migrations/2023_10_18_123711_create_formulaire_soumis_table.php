@@ -18,6 +18,7 @@ return new class extends Migration
         $table->json('data', 2000);
         $table->string('type_forms', 255);
         $table->boolean('dg')->default(false);
+        $table->boolean('confirmation')->default(false);
 
         $table->rememberToken();
         $table->timestamps();

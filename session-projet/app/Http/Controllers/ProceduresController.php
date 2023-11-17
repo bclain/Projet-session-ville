@@ -10,12 +10,12 @@ class ProceduresController extends Controller
     public function index()
     {
         $procedures = Procedure::all();
-        return view('procedures.index', compact('procedures'));
+        return view('formulaires.ajoutProcedure', compact('procedures'));
     }
 
     public function create()
     {
-        return view('procedures.create');
+        return view('formulaires.ajoutProcedure');
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class ProceduresController extends Controller
 
         Procedure::create($request->all());
 
-        return redirect()->route('procedures.index')
+        return redirect()->route('usagers.show')
                         ->with('success', 'Procedure created successfully.');
     }
 
