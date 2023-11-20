@@ -19,4 +19,19 @@ class FormulaireSoumisController extends Controller
         }
         
     }
+
+    
+    public function store(Request $request)
+    {
+        $request;
+
+        
+
+
+        return redirect()->route('formulaires.index')
+                        ->with('success', 'Formulaire created successfully.');
+    }
+
+
+
 }
