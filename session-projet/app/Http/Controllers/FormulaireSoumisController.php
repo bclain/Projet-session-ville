@@ -21,17 +21,14 @@ class FormulaireSoumisController extends Controller
             return view('formulaires.formulaire_soumis', compact('notif','notifications'));
     }
     
-    // public function NotifNot()
-    // {
-    //     $formulaireSoumis = FormulaireSoumis::find($id);
-    //     if ($formulaireSoumis) {
-    //         return view('formulaires.formulairesoumis', compact('formulaireSoumis'));
-    //     }else{
-    //         return redirect()->route('usagers.show') //erreur 
-    //                          ->with('error', "Aucun formulaire trouvé");
-    //     }
+    public function NotifNot()
+    {
+        $user_id= Session::get('usager')['id'];
+        $notifications = Notification::where('id_user',$user_id)->get();
+        return View('formulaires.formulaire_soumis',compact('notifications'));
         
-    // }
+        
+    }
 
     
     public function store(Request $request)
