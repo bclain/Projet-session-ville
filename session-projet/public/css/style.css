@@ -182,6 +182,10 @@ header .menu-btn{
   flex-direction: column;
 }
 
+.notif a{
+  color: inherit;
+}
+
 .notif-btn svg{
   fill: rgb(27, 191, 0);
 }
@@ -393,6 +397,15 @@ input, select {
   border: 0.5px solid #DBDBDB;
 }
 
+.formulaire{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: 500px;
+  margin: auto;
+  justify-content: center;
+}
+
 .form-it{
   display: flex;
   align-self: stretch;
@@ -406,15 +419,66 @@ input, select {
   background: linear-gradient(180deg, #E4F3FF 0%, rgba(255, 255, 255, 0.00) 100%);
 }
 
-.form-group{
+.form-group {
+  display: flex;
+  flex-direction: row;
+  max-width: 500px;
+  margin: auto;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+  align-items: center;
+  gap: 0px 10px;
+  width: 100%;
+}
+
+.form-group label{
+  min-width: 150px;
   display: flex;
   flex-direction: column;
 }
 
-.form-group label{
-  display: flex;
-  flex-direction: column;
+.form-group input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  box-sizing: border-box;
 }
+
+.form-group input[type=date] , .form-group input[type=time]{
+  display: flex;
+  margin-left: 15px;
+  /* display: inline; */
+  flex-direction: row;
+  align-items: center;
+}
+.form-group h3{
+  color: var(--dark);
+  padding: 40px 20px 20px 20px;
+  max-width: 499px;
+  margin: auto;
+}
+
+.form-group.dg-class{
+  width: fit-content;
+}
+
+.form-group.form-group.dg-class .dg-container{
+  align-items: center;
+  gap: 15px;
+  background-color: var(--lightblue);
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+
+.form-group.dg-class label{
+  min-width: inherit;
+}
+
+.form-group.conditional{
+  max-width: 400px;
+  width: 80%;
+  color: #597383;
+}
+
 
 @media only screen and (max-width: 600px){
   section{

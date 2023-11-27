@@ -38,4 +38,7 @@ Route::get('/connexion',        [UsagersController::class, 'showLoginForm'])    
 Route::get('/deconnexion',      [UsagersController::class, 'logout'])           ->name('usagers.logout');
 
 Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
-Route::get('/formulaire-soumis/{id}',[FormulaireSoumisController::class, 'show'])->name('formulairesSoumis.show');
+Route::post('/formulaire-soumis/soumission', [FormulaireSoumisController::class, 'store'])->name('formulaire.submit');
+Route::get('/formulaire-soumis/{id}',  [FormulaireSoumisController::class, 'show']) ->name('formulairesSoumis.show');
+Route::redirect('/home', '/accueil');
+Route::redirect('/', '/accueil');
