@@ -17,7 +17,7 @@ class FormulaireSoumisController extends Controller
     public function show(string $id,Notification $notif)
     {  
         $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
+        $notifications = Notification::where('id',$id)->get();
             return view('formulaires.formulaire_soumis', compact('notif','notifications'));
     }
     

@@ -1,8 +1,12 @@
-@section('content')
-    <div class="container">
-        <h1>Test</h1>
+@extends('layouts.app')
 
-    </div>
+@section('Mid')
+@foreach ($notifications as $not)
+
+{{$not->id}}
+{{$not->id_user}}
+{{$not->id_formulaire_soumis}}
+@endforeach   
 @endsection
 
 
