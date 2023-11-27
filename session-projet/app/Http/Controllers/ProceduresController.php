@@ -7,11 +7,7 @@ use App\Models\Procedure;
 
 class ProceduresController extends Controller
 {
-    public function index()
-    {
-       
-        return 'hh';
-    }
+   
 
     public function create()
     {
