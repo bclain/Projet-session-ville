@@ -44,7 +44,9 @@ class FormulaireSoumisController extends Controller
         $formulaireSoumis->num_employe = $userId; // Remplacez 'num_employe' par le nom de votre champ approprié
         $formulaireSoumis->type_forms = $data['type_formulaire'];
         $formulaireSoumis->dg = 0; // Assurez-vous que le champ 'dg' est inclus dans votre JSON
-        $formulaireSoumis->data = $data['fields']; // Utilisez le champ 'fields' pour le champ 'data' comme exemple
+        $jsonData = json_encode(['fields' => $data['fields']]);
+        $formattedJson = json_decode($jsonData, true, 512, JSON_PRETTY_PRINT);
+        $formulaireSoumis->data = $formattedJson; // Utilisez le champ 'fields' pour le champ 'data' comme exemple
     
         // Enregistrez le formulaire soumis dans la base de données
         $formulaireSoumis->save();

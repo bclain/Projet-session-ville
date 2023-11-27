@@ -30,29 +30,23 @@
                     </svg>
                 </a>
                 <a href="#" id="menu-btn" class="menu-btn">
-                    <svg class="hb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="#eee"
-                        stroke-width=".6" fill="rgba(0,0,0,0)" stroke-linecap="round" style="cursor: pointer">
-                        <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
-                            <animate dur="0.2s" attributeName="d"
-                                values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7"
-                                fill="freeze" begin="start.begin" />
-                            <animate dur="0.2s" attributeName="d"
-                                values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7"
-                                fill="freeze" begin="reverse.begin" />
-                        </path>
-                        <rect width="10" height="10" stroke="none">
-                            <animate dur="2s" id="reverse" attributeName="width" begin="click" />
-                        </rect>
-                        <rect width="10" height="10" stroke="none">
-                            <animate dur="0.001s" id="start" attributeName="width" values="10;0" fill="freeze"
-                                begin="click" />
-                            <animate dur="0.001s" attributeName="width" values="0;10" fill="freeze"
-                                begin="reverse.begin" />
-                        </rect>
-                    </svg>
-                    <path
-                        d="M1.78571 0.5H10.7143C11.1879 0.5 11.6421 0.679107 11.977 0.997919C12.3119 1.31673 12.5 1.74913 12.5 2.2C12.5 2.65087 12.3119 3.08327 11.977 3.40208C11.6421 3.72089 11.1879 3.9 10.7143 3.9H1.78571C1.31211 3.9 0.85791 3.72089 0.523024 3.40208C0.188137 3.08327 0 2.65087 0 2.2C0 1.74913 0.188137 1.31673 0.523024 0.997919C0.85791 0.679107 1.31211 0.5 1.78571 0.5ZM14.2857 14.1H23.2143C23.6879 14.1 24.1421 14.2791 24.477 14.5979C24.8119 14.9167 25 15.3491 25 15.8C25 16.2509 24.8119 16.6833 24.477 17.0021C24.1421 17.3209 23.6879 17.5 23.2143 17.5H14.2857C13.8121 17.5 13.3579 17.3209 13.023 17.0021C12.6881 16.6833 12.5 16.2509 12.5 15.8C12.5 15.3491 12.6881 14.9167 13.023 14.5979C13.3579 14.2791 13.8121 14.1 14.2857 14.1ZM1.78571 7.3H23.2143C23.6879 7.3 24.1421 7.47911 24.477 7.79792C24.8119 8.11673 25 8.54913 25 9C25 9.45087 24.8119 9.88327 24.477 10.2021C24.1421 10.5209 23.6879 10.7 23.2143 10.7H1.78571C1.31211 10.7 0.85791 10.5209 0.523024 10.2021C0.188137 9.88327 0 9.45087 0 9C0 8.54913 0.188137 8.11673 0.523024 7.79792C0.85791 7.47911 1.31211 7.3 1.78571 7.3Z"
-                        fill="white" />
+                    <svg class="hb" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" stroke="white" id="svgButton"
+                    stroke-width=".6" fill="rgba(0,0,0,0)" stroke-linecap="round" style="cursor: pointer">
+                      <path d="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7">
+                        <animate dur="0.2s" attributeName="d"
+                          values="M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7;M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7" fill="freeze"
+                          begin="start.begin" />
+                        <animate dur="0.2s" attributeName="d"
+                          values="M3,3L5,5L7,3M5,5L5,5M3,7L5,5L7,7;M2,3L5,3L8,3M2,5L8,5M2,7L5,7L8,7" fill="freeze"
+                          begin="reverse.begin" />
+                      </path>
+                      <rect width="10" height="10" stroke="none">
+                        <animate dur="2s" id="reverse" attributeName="width" begin="click" />
+                      </rect>
+                      <rect width="10" height="10" stroke="none">
+                        <animate dur="0.001s" id="start" attributeName="width" values="10;0" fill="freeze" begin="click" />
+                        <animate dur="0.001s" attributeName="width" values="0;10" fill="freeze" begin="reverse.begin" />
+                      </rect>
                     </svg>
                 </a>
             </nav>
@@ -218,7 +212,25 @@
     </script>
 
     <script>
+
+        // Sélectionnez les éléments <animate> pour l'animation
+        const startAnimation = document.getElementById('start');
+        const reverseAnimation = document.getElementById('reverse');
+        // Initialisez une variable pour suivre l'état actuel de l'animation
+        let isAnimationReversed = false;
+
         document.querySelector('.menu-btn').addEventListener('click', function() {
+
+            startAnimation.beginElement();
+
+            isAnimationReversed = !isAnimationReversed;
+            // Déclenchez l'animation SVG en fonction de l'état actuel
+            if (isAnimationReversed) {
+                startAnimation.beginElement(); // Déclenchez l'animation inverse
+            } else {
+                reverseAnimation.beginElement(); // Déclenchez l'animation initiale
+            }
+
             var dropdownMenu = document.querySelector('.dropdown-menu');
             var dropdownNotif = document.querySelector('.dropdown-notif');
             dropdownNotif.classList.remove('open');
