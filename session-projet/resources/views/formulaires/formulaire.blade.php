@@ -4,11 +4,13 @@
     <section>
         <div class="contain">
             <h1>{{ $formulaire->type_forms }}</h1>
-            <form class="formulaire" action="#" method="post" id="myForm">
+            <form class="formulaire" action="{{ route('formulaire.submit') }}" method="post" id="myForm">
                 @csrf
                 @php
                     $fields = $formulaire->data['fields'] ?? [];
                 @endphp
+
+                <input type="hidden" name="type_formulaire" value="{{ $formulaire->type_forms }}">
 
                 @foreach ($fields as $field)
                     @if ($field['label'] === 'Gauche' || $field['label'] === 'Droite')
@@ -120,6 +122,7 @@
 
         // Initialiser le JSON
         const jsonData = {
+            type_formulaire: document.querySelector('input[name="type_formulaire"]').value,
             fields: [],
         };
 
@@ -132,7 +135,7 @@
             const fieldValue = element.value;
             const fieldId = element.getAttribute("id");
 
-            if (fieldName ) {
+            if (fieldName && fieldType !== "hidden" ) {
                 if (fieldType === "checkbox") {
                     const isChecked = element.checked;
                     jsonData.fields.push({
@@ -155,7 +158,9 @@
             }
         }
 
-        // Soumettre les données JSON au serveur en utilisant une requête AJAX
+        console.log(JSON.stringify(jsonData, null, 2));
+
+        // // Soumettre les données JSON au serveur en utilisant une requête AJAX
         fetch('{{ route('formulaire.submit') }}',  {
             method: 'POST',
             headers: {
