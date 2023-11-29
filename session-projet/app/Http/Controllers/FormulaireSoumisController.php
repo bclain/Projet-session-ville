@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FormulaireSoumis; // Assurez-vous d'importer le modèle approprié
 use App\Models\Usager;
 use App\Models\Notification;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
@@ -17,10 +18,16 @@ class FormulaireSoumisController extends Controller
     public function show(string $id,Notification $notif)
     {  
         $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id',$id)->get();
-            return view('formulaires.formulaire_soumis', compact('notif','notifications'));
+        $notifications = Notification::where('id_user',$user_id)->get();
+        $notificationsA = DB::table('notifications')
+        ->where('notifications.id',$id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+            return view('formulaires.formulaire_soumis', compact('notif','notificationsA','notifications'));
     }
-    
+    //$notifications = Notification::where('id',$id)->get();
     public function NotifNot()
     {
         $user_id= Session::get('usager')['id'];
