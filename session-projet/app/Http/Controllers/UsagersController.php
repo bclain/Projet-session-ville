@@ -41,7 +41,6 @@ class UsagersController extends Controller
         if(! $usager || ! Hash::check($req->password,$usager->password))
         {
             return redirect('/connexion');
-            
         }
         else{
             $req->session()->put('usager',$usager);

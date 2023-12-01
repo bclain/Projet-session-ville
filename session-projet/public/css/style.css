@@ -457,6 +457,13 @@ input, select {
   margin: auto;
 }
 
+.formulaire h3{
+  color: var(--dark);
+  padding-bottom: 20px;
+  max-width: 499px;
+  margin: auto;
+}
+
 .form-group.dg-class{
   width: fit-content;
 }
@@ -477,6 +484,21 @@ input, select {
   max-width: 400px;
   width: 80%;
   color: #597383;
+}
+
+.formulaire.readonly input{
+  cursor: default;
+  border:  rgb(186, 186, 186) .3px solid;
+  color: rgb(81, 81, 81);
+  height: 35px;
+}
+
+.formulaire.readonly label{
+  color: gray;
+}
+
+.formulaire.readonly .labelsec{
+  padding-bottom: 5px;
 }
 
 
