@@ -1,8 +1,16 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
+use App\Models\Usager;
+use App\Models\Notification;
+use App\Models\FormulaireSoumis;
+use App\Models\Formulaire;
 use App\Models\Procedure;
 
 class ProceduresController extends Controller
@@ -11,7 +19,18 @@ class ProceduresController extends Controller
 
     public function create()
     {
-        return view('formulaires.ajoutProcedure');
+        $procedures = Procedure::all();
+        $user_id= Session::get('usager')['id'];      
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+
+        return View('formulaires.ajoutProcedure',compact('notifications'));
+
+        // return view('formulaires.ajoutProcedure');
     }
 
     public function store(Request $request)

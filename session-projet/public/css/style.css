@@ -437,7 +437,7 @@ input, select {
   flex-direction: column;
 }
 
-.form-group input[type=text] {
+.form-group input[type=text], .form-group input[type=url] {
   width: 100%;
   padding: 12px 20px;
   box-sizing: border-box;

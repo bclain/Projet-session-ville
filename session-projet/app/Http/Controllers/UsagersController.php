@@ -54,8 +54,11 @@ class UsagersController extends Controller
     }
 
     //Notif 
-    public function show()
+    public function show(Request $req)
     {
+        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        {
+
         $procedures = Procedure::all();
         $user_id= Session::get('usager')['id'];      
         $notifications = DB::table('notifications')
@@ -65,6 +68,11 @@ class UsagersController extends Controller
         ->select('formulairesoumis.*','usagers.*','notifications.*')
         ->get();
         return View('users.index',compact('notifications','procedures'));
+        }
+        else
+        {
+            return redirect('/connexion');
+        } 
     }
      //Notif 
     public function GabNotif()

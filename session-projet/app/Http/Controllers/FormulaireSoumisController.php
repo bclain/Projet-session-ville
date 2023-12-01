@@ -40,6 +40,7 @@ class FormulaireSoumisController extends Controller
     
     public function store(Request $request)
     {
+        $user_id= Session::get('usager')['id'];
         // Récupérez les données JSON du formulaire soumis
         $data = $request->json()->all();
         $userId = $request->session()->get('usager')['id'];
@@ -47,6 +48,7 @@ class FormulaireSoumisController extends Controller
     
         // Créez une nouvelle instance de votre modèle et remplissez les champs
         $formulaireSoumis = new FormulaireSoumis();
+        
         $formulaireSoumis->num_superieur = $userSupp; // Utilisez le champ 'type_formulaire' pour 'num_superieur' comme exemple
         $formulaireSoumis->num_employe = $userId; // Remplacez 'num_employe' par le nom de votre champ approprié
         $formulaireSoumis->type_forms = $data['type_formulaire'];
@@ -57,6 +59,18 @@ class FormulaireSoumisController extends Controller
     
         // Enregistrez le formulaire soumis dans la base de données
         $formulaireSoumis->save();
+        
+
+        //Notification 
+       $idF = $formulaireSoumis->id;
+        $notificationsC=new Notification();
+        $notificationsC ->id_user = $userSupp;
+        $notificationsC ->id_formulaire_soumis= $idF;
+        $notificationsC ->vu = 0;
+        $notificationsC ->type = 'confirmation';
+        $notificationsC->save();
+
+      
     
         // Redirigez l'utilisateur vers la page souhaitée avec un message de succès
         return redirect('/accueil'); //redirection apres connection
