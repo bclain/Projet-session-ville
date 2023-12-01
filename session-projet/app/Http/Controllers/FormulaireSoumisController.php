@@ -38,7 +38,7 @@ class FormulaireSoumisController extends Controller
     }
 
     
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
         $user_id= Session::get('usager')['id'];
         // Récupérez les données JSON du formulaire soumis
@@ -62,13 +62,13 @@ class FormulaireSoumisController extends Controller
         
 
         //Notification 
-       // $idF = $formulaireSoumis->id;
-       // $notificationsC=new Notification();
-       // $notificationsC ->id_user = $userSupp;
-       // $notificationsC ->id_formulaire_soumis= $idF;
-      //  $notificationsC ->vu = 0;
-       // $notificationsC ->type = 'confirmation';
-      //  $notificationsC->save();
+       $idF = $formulaireSoumis->id;
+        $notificationsC=new Notification();
+        $notificationsC ->id_user = $userSupp;
+        $notificationsC ->id_formulaire_soumis= $idF;
+        $notificationsC ->vu = 0;
+        $notificationsC ->type = 'confirmation';
+        $notificationsC->save();
 
       
     
