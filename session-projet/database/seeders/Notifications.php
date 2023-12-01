@@ -26,9 +26,9 @@ class Notifications extends Seeder
 
             DB::table('notifications')->insert([
                 'id_user' => $random_user_id,
-                'id_formulaire_soumis' => $random_form_soumis_id,
-                'data' => json_encode(['message' => 'This is a test notification', 'type' => 'info']),
+                'id_formulaire_soumis' => $random_form_soumis_id,               
                 'vu' => rand(0, 1),  // Randomly set the notification as seen or not
+                'type'=>'information',
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

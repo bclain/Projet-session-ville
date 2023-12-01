@@ -14,11 +14,10 @@ return new class extends Migration
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_user');
-            $table->string('id_formulaire_soumis')->default('0');
-            $table->json('data', 2000);
-            $table->boolean('vu')->default(false);
-
+            $table->string('id_formulaire_soumis')->default('0');           
+            $table->boolean('vu')->default(false);          
             $table->foreign('id_user')->references('id')->on('usagers');
+            $table->string('type',100);
             $table->timestamps();
         });
     }
