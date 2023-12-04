@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('Mid')
+
     <section>
-        <div class="contain">
+    
+        <div class="contain">           
             <h1>{{ $formulaire->type_forms }}</h1>
             <form class="formulaire" action="{{ route('formulaire.submit') }}" method="post" id="myForm">
                 @csrf
@@ -65,6 +67,7 @@
                         </div>
                     @endif
                 @endforeach
+                
 
 
                 <button type="submit" class="btn-base">Submit</button>

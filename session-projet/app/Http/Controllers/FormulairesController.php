@@ -10,90 +10,25 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 
 class FormulairesController extends Controller
 {
-    public function index()
-    {
-        $formulaires = Formulaire::all();
-        return view('formulaires.index', compact('formulaires'));
-    }
-
-    public function create()
-    {
-        return view('formulaires.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'num_superieur' => 'required|max:255',
-            'num_employe' => 'required|max:255',
-            'data' => 'required',
-            'type_forms' => 'required|max:255',
-        ]);
-
-        Formulaire::create($request->all());
-
-        return redirect()->route('formulaires.index')
-                        ->with('success', 'Formulaire created successfully.');
-    }
-//ca se repete Verification
-    public function show(string $id)
-    {
-        $formulaire = Formulaire::find($id);
-        return view('formulaires.show', compact('formulaire'));
-    }
-
-    public function edit(string $id)
-    {
-        $formulaire = Formulaire::find($id);
-        return view('formulaires.edit', compact('formulaire'));
-    }
-//
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'num_superieur' => 'required|max:255',
-            'num_employe' => 'required|max:255',
-            'data' => 'required',
-            'type_forms' => 'required|max:255',
-        ]);
-
-        $formulaire = Formulaire::find($id);
-        $formulaire->update($request->all());
-
-        return redirect()->route('formulaires.index')
-                        ->with('success', 'Formulaire updated successfully.');
-    }
-//Verification 
-    public function destroy(string $id)
-    {
-        $formulaire = Formulaire::find($id);
-        $formulaire->delete();
-
-        return redirect()->route('users.index') //erreur 
-                        ->with('success', 'Formulaire deleted successfully.');
-    }
-    //Ne sert a rien 
-    public function showFirst()
-    {
-        $formulaire = Formulaire::first();
-        if ($formulaire) {
-            return view('formulaires.formulaire', compact('formulaire'));  // Changez 'show_first' en 'formulaire'
-        } else {
-            return redirect()->route('users.index') //erreur 
-                             ->with('error', 'No formulaires found.');
-        }
-    }
     //Important ++
-    public function showAccidentDeTravail()
+    public function showAccidentDeTravail(Request $req,string $id)
     {
+        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        {
 
-        $formulaire = Formulaire::where('type_forms', 'Accident de travail')->first();    
-        $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
+        $formulaire = Formulaire::find($id); 
+        $user_id= Session::get('usager')['id'];      
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
         
         if ($formulaire) {
 
@@ -101,6 +36,11 @@ class FormulairesController extends Controller
         } else {
             return redirect()->route('users.index') //erreur 
                              ->with('error', 'No "Accident de travail" form found.');
+        }
+    }
+    else
+        {
+            return redirect('/connexion');
         }
     }
 }

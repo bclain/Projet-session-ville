@@ -15,10 +15,10 @@ use App\Models\Procedure;
 
 class ProceduresController extends Controller
 {
-   
-
     public function create()
     {
+        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        {
         $procedures = Procedure::all();
         $user_id= Session::get('usager')['id'];      
         $notifications = DB::table('notifications')
@@ -27,10 +27,12 @@ class ProceduresController extends Controller
         ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
         ->select('formulairesoumis.*','usagers.*','notifications.*')
         ->get();
-
         return View('formulaires.ajoutProcedure',compact('notifications'));
-
-        // return view('formulaires.ajoutProcedure');
+        }
+        else
+        {
+            return redirect('/connexion');
+        }
     }
 
     public function store(Request $request)
@@ -44,34 +46,5 @@ class ProceduresController extends Controller
 
         return redirect()->route('usagers.show')
                         ->with('success', 'Procedure created successfully.');
-    }
-
-   
-
-    public function edit(string $id)
-    {
-        $procedure = Procedure::find($id);
-        return view('procedures.edit', compact('procedure'));
-    }
-
-    public function update(Request $request, string $id)
-    {
-        $request->validate([
-            'nom' => 'required|max:256',
-            'liens' => 'required|max:2000',
-        ]);
-
-        $procedure = Procedure::find($id);
-        $procedure->update($request->all());
-
-        return 'test';
-    }
-
-    public function destroy(string $id)
-    {
-        $procedure = Procedure::find($id);
-        $procedure->delete();
-
-        return 'test';
     }
 }

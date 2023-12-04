@@ -17,8 +17,15 @@ class FormulaireSoumisController extends Controller
 
     public function show(string $id,Notification $notif)
     {  
+        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        {
         $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
         $notificationsA = DB::table('notifications')
         ->where('notifications.id',$id)
         ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')
@@ -27,17 +34,12 @@ class FormulaireSoumisController extends Controller
         ->get();
             return view('formulaires.formulaire_soumis', compact('notif','notificationsA','notifications'));
     }
-    //$notifications = Notification::where('id',$id)->get();
-    public function NotifNot()
-    {
-        $user_id= Session::get('usager')['id'];
-        $notifications = Notification::where('id_user',$user_id)->get();
-        return View('formulaires.formulaire_soumis',compact('notifications'));
-        
-        
-    }
-
-    
+    else
+        {
+            return redirect('/connexion');
+        }
+}
+  
     public function store(Request $request)
     {
         $user_id= Session::get('usager')['id'];
@@ -75,6 +77,15 @@ class FormulaireSoumisController extends Controller
         // Redirigez l'utilisateur vers la page souhaitée avec un message de succès
         return redirect('/accueil'); //redirection apres connection
     }
+
+    public function updatenotif(Request $request, string $id)
+    {
+        $notif = Notification::findOrFail($id);
+        $notif->vu = 1;
+        $notif->save();
+        return redirect()->back();
+    }
+    
 
 
 

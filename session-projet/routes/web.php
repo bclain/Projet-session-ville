@@ -37,8 +37,15 @@ Route::post('/connexion',       [UsagersController::class,'login'])             
 Route::get('/connexion',        [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
 Route::get('/deconnexion',      [UsagersController::class, 'logout'])           ->name('usagers.logout');
 
-Route::get('/formulaires/accident-de-travail',  [FormulairesController::class, 'showAccidentDeTravail']);
+Route::get('/formulaires/{id}',  [FormulairesController::class, 'showAccidentDeTravail']);
+
 Route::post('/formulaire-soumis/soumission', [FormulaireSoumisController::class, 'store'])->name('formulaire.submit');
 Route::get('/formulaire-soumis/{id}',  [FormulaireSoumisController::class, 'show']) ->name('formulairesSoumis.show');
 Route::redirect('/home', '/accueil');
 Route::redirect('/', '/accueil');
+
+//modifier le statut de la notif 
+
+Route::patch('/updatenotif/{not}', [FormulaireSoumisController::class, 'updatenotif'])
+    ->name('notification.updateNot');
+

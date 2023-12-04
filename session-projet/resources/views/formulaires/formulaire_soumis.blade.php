@@ -14,7 +14,7 @@
         <h1> Formulaire soumis:</h1>
 
 <div class="formulaire readonly">
-    @foreach ($notificationsA as $not)
+@foreach ($notificationsA as $not)
         <h3>{{ $not->type_forms }}</h3>
         @foreach (json_decode($not->data, true)['fields'] as $field)
             @if ($field['type'] === 'h3')
@@ -70,11 +70,20 @@
                         value="{{ $field['value'] }}" class="form-control">
                 </div>
             @endif
-        @endforeach
     @endforeach
-    <form action="{{ route('formulaire.submit') }}" method="post" id="myForm">      
-    <button type="submit" class="btn-base">J'ai pris connaissance</button>
-    </form>
+
+    @if($not->vu == 0)
+        <form action="{{ route('notification.updateNot', ['not' => $not->id]) }}" method="POST">
+        @method('PATCH')
+        @csrf
+        <button type="submit" class="btn-base">J'ai pris connaissance</button>
+        </form>
+    @else
+    <button class="btn-base" disabled>Vous avez confirme ce formulaire </button>
+    @endif
+
+@endforeach
+
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

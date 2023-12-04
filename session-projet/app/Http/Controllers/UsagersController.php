@@ -51,15 +51,14 @@ class UsagersController extends Controller
     {
         $request->session()->forget('usager');
         return redirect('/connexion');
-    }
-
-    //Notif 
+    }   
     public function show(Request $req)
     {
         if($req->session()->has('usager'))  //IMMPORTANT verification 
         {
 
         $procedures = Procedure::all();
+        $formulaire = Formulaire::all();
         $user_id= Session::get('usager')['id'];      
         $notifications = DB::table('notifications')
         ->where('notifications.id_user',$user_id)
@@ -67,29 +66,12 @@ class UsagersController extends Controller
         ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
         ->select('formulairesoumis.*','usagers.*','notifications.*')
         ->get();
-        return View('users.index',compact('notifications','procedures'));
+        return View('users.index',compact('notifications','procedures','formulaire'));
         }
         else
         {
             return redirect('/connexion');
         } 
     }
-     //Notif 
-    public function GabNotif()
-    {
-        $user_id= Session::get('usager')['id'];
-        $notifications = DB::table('notifications')
-        ->where('notifications.id_user',$user_id)
-        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
-        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
-        ->select('formulairesoumis.*','usagers.*','notifications.*')
-        ->get();
-        return View('layouts.app',compact('notifications','InfNotif'));
-    }
-    
-    
-    public function showLoginForm()
-    {
-        return view('users.connexion');  // Ensure the view path is correct.
-    }
+   
 }
