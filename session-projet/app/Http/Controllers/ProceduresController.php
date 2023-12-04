@@ -15,7 +15,7 @@ use App\Models\Procedure;
 
 class ProceduresController extends Controller
 {
-    public function create()
+    public function create(request $req)
     {
         if($req->session()->has('usager'))  //IMMPORTANT verification 
         {
