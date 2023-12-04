@@ -95,6 +95,10 @@ class FormulaireSoumisController extends Controller
         
         return redirect()->back();
     }
+    public function historique(Request $req)
+    {
+        return view('formulaires.AffichageForm' );
+    }
 
     
 

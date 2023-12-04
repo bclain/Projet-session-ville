@@ -49,3 +49,6 @@ Route::redirect('/', '/accueil');
 Route::patch('/updatenotif/{not}', [FormulaireSoumisController::class, 'updatenotif'])
     ->name('notification.updateNot');
 
+//affichage des forms 
+Route::get('/formulaire-soumis',[FormulaireSoumisController::class, 'historique']);
+
