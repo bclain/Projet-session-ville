@@ -185,24 +185,13 @@
 
         @yield('Mid') <!--nom de la section  -->
 
-        <!-- LINKS -->
-        <section class="link">
-            <div class="logos">
-                <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
-
-            </div>
-            <div class="sub-links">
-                <ul>
-                    x
-                </ul>
-            </div>
-        </section>
-        <!-- END OF LINKS -->
+      
 
 
         <!-- FOOTER -->
         <footer>
-            <p> Zakaria , jerome, Antoine, Inc.</p>
+            <p> Zakaria, Brice, Antoine, Inc.</p>
+            <hr>
             <p> Projet ville </p>
         </footer>
     </div>

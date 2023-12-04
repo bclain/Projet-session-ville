@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('Mid')
-
-    <section>
-    
-        <div class="contain">           
+    <section style="">
+        <div class="contain">
             <h1>{{ $formulaire->type_forms }}</h1>
-            <form class="formulaire" action="{{ route('formulaire.submit') }}" method="post" id="myForm">
+
+            <form action="#" method="post">
                 @csrf
                 @php
                     $fields = $formulaire->data['fields'] ?? [];

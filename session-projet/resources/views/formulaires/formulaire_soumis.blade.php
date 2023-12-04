@@ -79,7 +79,12 @@
         <button type="submit" class="btn-base">J'ai pris connaissance</button>
         </form>
     @else
-    <button class="btn-base" disabled>Vous avez confirme ce formulaire </button>
+    <div class="valide">
+        <h4>Ce formulaire à été validé </h4>
+        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.39995 13.0125L0.699951 7.31255L2.12495 5.88755L6.39995 10.1625L15.575 0.987549L17 2.41255L6.39995 13.0125Z" fill="#1BBF00"></path>
+         </svg>
+    </div>
     @endif
 
 @endforeach

@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class FormulaireSoumisController extends Controller
 {
 
-    public function show(string $id,Notification $notif)
+    public function show(string $id,Notification $notif, request $req)
     {  
         if($req->session()->has('usager'))  //IMMPORTANT verification 
         {

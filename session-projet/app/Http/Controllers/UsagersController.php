@@ -73,5 +73,10 @@ class UsagersController extends Controller
             return redirect('/connexion');
         } 
     }
+
+    public function showLoginForm()
+    {
+        return view('users.connexion');  // Ensure the view path is correct.
+    }
    
 }
