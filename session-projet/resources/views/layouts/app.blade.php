@@ -142,13 +142,13 @@
            
             <li class="notif">
                 <!-- lien d affichage du fromulaire-->
-                <a href="{{ url('/formulaire-soumis/' . $notification->id) }}" style="border: 1px solid  {{ $notification->vu ? '#DBDBDB' : '#FF1F00' }};">
+                <a href="{{ url('/formulaire-soumis/' . $notification->id) }}" style="border: 1px solid  {{ $notification->confirmation ? '#DBDBDB' : '#FF1F00' }};">
                     <div class="notif-content">
-                        <h3 style="font-weight: {{ $notification->vu ? '500' : '700' }};"><p>{{$notification->type_forms }}</p></h3>
+                        <h3 style="font-weight: {{ $notification->confirmation ? '500' : '700' }};"><p>{{$notification->type_forms }}</p></h3>
                         <p>{{$notification->nom }}</p>                        
                         
                     </div>
-                    {!! $notification->vu 
+                    {!! $notification->confirmation 
                         ? 
                         // Si $notification->vu est vrai, afficher le SVG avec le chemin rouge
 

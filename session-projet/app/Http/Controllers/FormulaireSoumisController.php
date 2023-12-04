@@ -80,11 +80,22 @@ class FormulaireSoumisController extends Controller
 
     public function updatenotif(Request $request, string $id)
     {
-        $notif = Notification::findOrFail($id);
-        $notif->vu = 1;
-        $notif->save();
+        $idFrom = Notification::where('id', '=', $id)
+                ->select('notifications.id_formulaire_soumis')
+                ->first();
+
+        if ($idFrom) {
+            $confirmation = FormulaireSoumis::find($idFrom->id_formulaire_soumis);
+
+            if ($confirmation) {
+                $confirmation->confirmation = 1;
+                $confirmation->save();
+            }
+        }
+        
         return redirect()->back();
     }
+
     
 
 
