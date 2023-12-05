@@ -390,8 +390,26 @@ input, select {
   margin-top: 22px;
 }
 
+.btn-scnd{
+  display: inline-flex;
+  margin: 0px;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+  background: var(--link);
+  border: var(--link) 1px solid;
+  color: #FFF;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;  
+}
 
-.btn-base:hover{
+
+.btn-base:hover, .btn-scnd:hover{
   cursor: pointer;
   color: var(--dark);
   background-color: var(--lightblue);
@@ -542,6 +560,11 @@ input, select {
   padding-bottom: 5px;
 }
 
+.form-submit{
+  display: flex;
+  justify-content: center;
+}
+
 .valide{
   display: flex;
   justify-content: space-between;
@@ -561,6 +584,68 @@ input, select {
     align-items: center;
 }
 
+.form-build .ajout{
+  display: flex;
+  gap: 10px;
+}
+.form-build .label-group{
+  width: 100%;
+}
+
+.form-build .label-group{
+  display: flex;
+  padding: 5px;
+  background-color: var(--lightblue);
+}
+
+.form-build .form-group button{
+ color: red;
+ border: none;
+ cursor: pointer;
+ padding: 5px;
+ background: white;
+ border-radius: 9px;
+ justify-self:center
+}
+
+.form-build .form-group button:hover{
+  border: red 1px solid;
+ }
+
+.form-build .label-group label{
+  color: gray;
+}
+
+.form-build .input-not{
+  height: 24px;
+}
+
+#formBuilder{
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.form-build .label-group input{
+  border: 0px;
+  padding: 5px 10px!important;
+  border-radius: 0px;
+  height: 33px;
+}
+
+#formBuilder .form-group{
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 0px;
+  width: 100%;
+  border-bottom: var(--darklazy) 2px solid;
+  background-color: var(--lightblue);
+}
+
+
 
 @media only screen and (max-width: 600px){
   section{
@@ -571,9 +656,9 @@ input, select {
     gap: 10px;
   }
   .line button {
-    align-self: center;
+    align-self:flex-start;
   }
-  .form-it {
+  .form-it, .lien-it {
     max-width: 100% ;
   }
 }

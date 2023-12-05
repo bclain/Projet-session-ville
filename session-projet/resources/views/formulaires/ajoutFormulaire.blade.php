@@ -1,43 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Création de formulaire</title>
-</head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+@extends('layouts.app')
 
-<div style="width: 80%; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-    <h1 style="text-align: center; margin-bottom: 20px;">Form Maker</h1>
-    
-    <div style="margin-bottom: 20px;">
-        <label for="formTitle" style="display: block; margin-bottom: 5px; font-weight: bold;">Form Title</label>
-        <input type="text" id="formTitle" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <label for="formDescription" style="display: block; margin-bottom: 5px; font-weight: bold;">Form Description</label>
-        <textarea id="formDescription" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <label for="textField" style="display: block; margin-bottom: 5px; font-weight: bold;">Text Field</label>
-        <input type="text" id="textField" placeholder="Your text here..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <label for="emailField" style="display: block; margin-bottom: 5px; font-weight: bold;">Email Field</label>
-        <input type="email" id="emailField" placeholder="Your email here..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-    </div>
-    
-    <div style="margin-bottom: 20px;">
-        <label for="passwordField" style="display: block; margin-bottom: 5px; font-weight: bold;">Password Field</label>
-        <input type="password" id="passwordField" placeholder="Your password here..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
-    </div>
-    
-    <div style="text-align: center;">
-        <button type="button" style="padding: 10px 20px; background-color: #007bff; color: white; border-radius: 4px; cursor: pointer;">Create Form</button>
-    </div>
-</div>
+@section('Mid')
+    <section style="form-principal">
+        <div class="contain formulaire form-build">
+            <h2>Ajout de formulaire</h2>
 
-</body>
-</html>
+            <div class="form-group">
+                <label>Type de formulaire: </label>
+                <input type="text" id="type_formulaire" placeholder="Entrez le type du formulaire">
+            </div>
+
+            <form id="formBuilder">
+                <!-- Les champs de formulaire seront ajoutés ici -->
+            </form>
+            <div class="ajout">
+                <h5>Ajouter</h5>
+                <button class="btn-scnd" onclick="addTextField()">Un champ</button>
+                <button class="btn-scnd" onclick="addField()">Un titre</button>
+                <button class="btn-scnd" onclick="addCheckbox()">Une case à cocher</button>
+            </div>
+            {{-- <pre id="jsonOutput"></pre>
+            <button onclick="generateJSON()">Générer JSON</button> --}}
+
+
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let fieldCount = 0; // Compteur pour les champs ajoutés
+
+            // Fonction pour ajouter un champ de texte
+            window.addTextField = function() {
+                const form = document.getElementById('formBuilder');
+                const div = document.createElement('div');
+                div.className = 'form-group';
+
+                const divlabel = document.createElement('div');
+                divlabel.className = 'label-group';
+
+                // Création de l'étiquette (label)
+                const label = document.createElement('input');
+                label.type = 'text';
+                label.id = 'label' + fieldCount;
+                label.className = 'form-control label';
+                label.placeholder = 'Entrez une question à poser';
+
+                // Création du champ de sélection
+                const select = document.createElement('select');
+                select.className = 'form-control input-not';
+                select.id = 'input' + fieldCount;
+
+                // Options pour le champ de sélection
+                const options = ['texte', 'long texte', 'heure', 'date'];
+                options.forEach(function(optionText) {
+                    let option = document.createElement('option');
+                    option.value = optionText;
+                    option.text = optionText;
+                    select.appendChild(option);
+                });
+
+                divlabel.appendChild(label);
+                div.appendChild(divlabel);
+                div.appendChild(select);
+                addRemoveButton(div, form);
+
+                form.appendChild(div);
+                fieldCount++;
+            };
+
+            // Fonction pour ajouter une case à cocher
+            window.addCheckbox = function() {
+                const form = document.getElementById('formBuilder');
+                const div = document.createElement('div');
+                div.className = 'form-group';
+
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.id = 'field' + fieldCount;
+                input.name = 'Tête, visage, nez, yeux, oreille D/G';
+                input.className = 'form-control';
+                input.setAttribute('data-dg', 'true');
+                input.setAttribute('data-group', 'tete_group');
+
+                const label = document.createElement('label');
+                label.setAttribute('for', 'field' + fieldCount);
+                label.textContent = 'Tête, visage, nez, yeux, oreille D/G';
+
+                div.appendChild(input);
+                div.appendChild(label);
+                addRemoveButton(div, form);
+
+                form.appendChild(div);
+                fieldCount++;
+            };
+
+            // Fonction pour ajouter un bouton de suppression
+            function addRemoveButton(element, form) {
+                const removeButton = document.createElement('button');
+                removeButton.textContent = 'Supprimer';
+                removeButton.onclick = function() {
+                    form.removeChild(element);
+                };
+                element.appendChild(removeButton);
+            }
+        });
+    </script>
+@endsection

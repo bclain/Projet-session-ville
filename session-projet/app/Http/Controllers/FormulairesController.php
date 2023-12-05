@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\DB;
 class FormulairesController extends Controller
 {
     //Important ++
+
+
+
+
     public function showAccidentDeTravail(Request $req,string $id)
     {
         if($req->session()->has('usager'))  //IMMPORTANT verification 
@@ -34,11 +38,30 @@ class FormulairesController extends Controller
 
             return view('formulaires.formulaire', compact('formulaire','notifications'));  // Assuming you have a view named 'show_accident'
         } else {
-            return redirect()->route('users.index') //erreur 
+            return redirect()->route('usagers.show') //erreur 
                              ->with('error', 'No "Accident de travail" form found.');
         }
     }
     else
+        {
+            return redirect('/connexion');
+        }
+    }
+
+    public function create(Request $req)
+    {
+        if($req->session()->has('usager'))  //IMMPORTANT verification 
+        {
+        $user_id= Session::get('usager')['id'];      
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+        return View('formulaires.ajoutFormulaire',compact('notifications'));
+        }
+        else
         {
             return redirect('/connexion');
         }

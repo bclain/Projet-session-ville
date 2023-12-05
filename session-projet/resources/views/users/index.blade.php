@@ -4,9 +4,11 @@
     <section style="form-principal">
         <div class="contain">
             <h2>Accueil</h2>
-            <h4 style="">Remplir un formulaire</h4>
-           
-            
+
+            <div class="line">
+                <h4 style="">Remplir un formulaire</h4>
+                <button onclick="location.href='/formulaires/ajout'" class="btn-base">Ajouter un formulaire</button>
+            </div>
             <div class="forms-home">
                 @foreach ($formulaire as $form)
                 <a href="{{ url('/formulaires/' . $form->id) }}" class="form-it"> 
@@ -25,7 +27,7 @@
 
                 <div class="line">
                     <h4 style="">Liens procédures</h4>
-                    <button class="btn-base">Ajouter une procédure</button>
+                    <button onclick="location.href='/creerProcedure'" class="btn-base">Ajouter une procédure</button>
                 </div>
                 <div class="liens-home">
                     @foreach ($procedures as $procedure)

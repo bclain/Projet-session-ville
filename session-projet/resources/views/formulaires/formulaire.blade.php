@@ -5,7 +5,7 @@
         <div class="contain">
             <h1>{{ $formulaire->type_forms }}</h1>
 
-            <form action="#" method="post">
+            <form id="myForm" class="formulaire" action="#" method="post">
                 @csrf
                 @php
                     $fields = $formulaire->data['fields'] ?? [];
@@ -15,35 +15,24 @@
 
                 @foreach ($fields as $field)
                     @if ($field['label'] === 'Gauche' || $field['label'] === 'Droite')
-                        <div class="form-group {{ $field['class'] ?? '' }} dg-class">
-                            <div class="dg-container" style="display: none;">
-                                <input type="checkbox" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
-                                    value="{{ $field['value'] }}" class="form-control dg-option"
-                                    data-group="{{ $field['group'] }}" {{ $field['value'] ? 'checked' : '' }}>
-                                <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
-                            </div>
-                        </div>
-                    @elseif ($field['type'] === 'checkbox')
-                        <div class="form-group {{ $field['class'] ?? '' }}">
-                            <input type="checkbox" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
-                                value="{{ $field['value'] }}" class="form-control"
-                                {{ $field['dg'] ? 'data-dg=true' : '' }} data-group="{{ $field['group'] ?? '' }}" {{ $field['value'] ? 'checked' : '' }}>
+                    <div class="form-group {{ $field['class'] ?? '' }} dg-class">
+                        <div class="dg-container" style="display: none;">
+                            <input   type="checkbox" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
+                                value="{{ $field['value'] }}" class="form-control dg-option"
+                                data-group="{{ $field['group'] }}" {{ $field['value'] ? 'checked' : '' }} >
                             <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
                         </div>
-                    @elseif($field['type'] === 'h3')
+                    </div>
+                @elseif ($field['type'] === 'checkbox')
+                    <div class="form-group {{ $field['class'] ?? '' }}">
+                        <input   type="checkbox" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
+                            value="{{ $field['value'] }}" class="form-control" 
+                            {{ $field['dg'] ? 'data-dg=true' : '' }} data-group="{{ $field['group'] ?? '' }}" {{ $field['value'] ? 'checked' : '' }}>
+                        <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
+                    </div>
+                @endif
 
-                    @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
-                        <div class="form-group {{ $field['class'] ?? '' }}">
-                            <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
-                        </div>
-                    @endif
-
-                    @if ($field['type'] === 'time')
-                        <div class="form-group {{ $field['class'] ?? '' }}">
-                            <input type="time" name="{{ $field['label'] }}" value="{{ $field['value'] }}"
-                                class="form-control">
-                        </div>
-                    @elseif($field['type'] === 'h1')
+                    @if ($field['type'] === 'h1')
                         <div class="form-group {{ $field['class'] ?? '' }}">
                             <h1>{{ $field['value'] }}</h1>
                         </div>
@@ -61,57 +50,60 @@
                         </div>
                     @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
                         <div class="form-group {{ $field['class'] ?? '' }}">
-                            <input type="{{ $field['type'] }}" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
+                            <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
+                            <input type="{{$field['type'] }}" id="{{ $field['id'] }}" name="{{ $field['label'] }}"
                                 value="{{ $field['value'] }}" class="form-control">
                         </div>
                     @endif
                 @endforeach
                 
+                <div class="form-submit">                
+                    <button type="submit" class="btn-base">Soumettre le formulaire</button>
+                </div>
 
-
-                <button type="submit" class="btn-base">Submit</button>
             </form>
         </div>
     </section>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const checkboxesWithDg = document.querySelectorAll('input[type="checkbox"][data-dg="true"]');
-            const checkboxTemoins = document.querySelector(
-            'input[type="checkbox"][name="Témoins?"]'); // Sélectionnez la case Témoins?
+        const checkboxesWithDg = document.querySelectorAll('input[type="checkbox"][data-dg="true"]');
+        const checkboxTemoins = document.querySelector(
+        'input[type="checkbox"][name="Témoins?"]'); // Sélectionnez la case Témoins?
 
-            checkboxesWithDg.forEach(checkbox => {
-                // Find the related radio button containers based on the checkbox's group
-                const radioButtons = document.querySelectorAll(
-                    `.dg-container [data-group="${checkbox.getAttribute('data-group')}"]`
-                );
-                const relatedRadioContainers = Array.from(radioButtons).map(radio => radio.parentNode);
+        checkboxesWithDg.forEach(checkbox => {
+            // Find the related radio button containers based on the checkbox's group
+            const radioButtons = document.querySelectorAll(
+                `.dg-container [data-group="${checkbox.getAttribute('data-group')}"]`
+            );
+            const relatedRadioContainers = Array.from(radioButtons).map(radio => radio.parentNode);
 
-                // Hide the radio button containers initially if the checkbox is not checked
+            // Hide the radio button containers initially if the checkbox is not checked
+            relatedRadioContainers.forEach(container => {
+                container.style.display = checkbox.checked ? 'flex' : 'none';
+            });
+
+            checkbox.addEventListener('change', function() {
                 relatedRadioContainers.forEach(container => {
                     container.style.display = checkbox.checked ? 'flex' : 'none';
                 });
+            });
+        });
 
-                checkbox.addEventListener('change', function() {
-                    relatedRadioContainers.forEach(container => {
-                        container.style.display = checkbox.checked ? 'flex' : 'none';
-                    });
-                });
+        checkboxTemoins.addEventListener('change', function() {
+                if (checkboxTemoins.checked) {
+                    // Si la case est cochée, affichez les champs conditionnels en utilisant 'flex'
+                    conditionalFields.forEach(field => field.style.display = 'flex');
+                } else {
+                    // Si la case n'est pas cochée, masquez les champs conditionnels en utilisant 'none'
+                    conditionalFields.forEach(field => field.style.display = 'none');
+                }
             });
 
-            checkboxTemoins.addEventListener('change', function() {
-                    if (checkboxTemoins.checked) {
-                        // Si la case est cochée, affichez les champs conditionnels en utilisant 'flex'
-                        conditionalFields.forEach(field => field.style.display = 'flex');
-                    } else {
-                        // Si la case n'est pas cochée, masquez les champs conditionnels en utilisant 'none'
-                        conditionalFields.forEach(field => field.style.display = 'none');
-                    }
-                });
+        const ouvrirCheckbox = document.getElementById('ouvrir');
+        const conditionalFields = document.querySelectorAll('.conditional');
+        conditionalFields.forEach(field => field.style.display = 'none');
+    });
 
-            const ouvrirCheckbox = document.getElementById('ouvrir');
-            const conditionalFields = document.querySelectorAll('.conditional');
-            conditionalFields.forEach(field => field.style.display = 'none');
-        });
 
      
 

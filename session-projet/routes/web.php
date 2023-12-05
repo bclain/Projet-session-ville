@@ -37,6 +37,7 @@ Route::post('/connexion',       [UsagersController::class,'login'])             
 Route::get('/connexion',        [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
 Route::get('/deconnexion',      [UsagersController::class, 'logout'])           ->name('usagers.logout');
 
+Route::get('/formulaires/ajout', [FormulairesController::class, 'create']);
 Route::get('/formulaires/{id}',  [FormulairesController::class, 'showAccidentDeTravail']);
 
 Route::post('/formulaire-soumis/soumission', [FormulaireSoumisController::class, 'store'])->name('formulaire.submit');
