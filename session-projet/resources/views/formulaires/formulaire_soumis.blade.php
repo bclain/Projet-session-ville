@@ -64,7 +64,7 @@
             @endif
     @endforeach
 
-    @if($not->vu == 0)
+  {{--   @if($not->vu == 0)
         <form action="{{ route('notification.updateNot', ['not' => $not->id]) }}" method="POST">
         @method('PATCH')
         @csrf
@@ -77,7 +77,24 @@
             <path d="M6.39995 13.0125L0.699951 7.31255L2.12495 5.88755L6.39995 10.1625L15.575 0.987549L17 2.41255L6.39995 13.0125Z" fill="#1BBF00"></path>
          </svg>
     </div>
-    @endif
+    @endif--}}
+
+
+    @if($not->confirmation == 0)    
+    <form action="{{ route('notification.updateNot', ['not' => $not->id]) }}" method="POST">
+        @method('PATCH')
+        @csrf
+        <button type="submit" class="btn-base">J'ai pris connaissance</button>
+    </form>
+@else
+    <div class="valide">
+        <h4>Ce formulaire a été validé </h4>
+        <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.39995 13.0125L0.699951 7.31255L2.12495 5.88755L6.39995 10.1625L15.575 0.987549L17 2.41255L6.39995 13.0125Z" fill="#1BBF00"></path>
+        </svg>
+    </div>
+@endif
+
 
 @endforeach
 

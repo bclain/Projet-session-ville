@@ -33,6 +33,11 @@ Route::get('/notifications',    [NotificationsController::class, 'index'])      
 Route::get('/creerProcedure',   [ProceduresController::class,'create'])         ->name('procedures.create');
 Route::post('/creerProcedure',  [ProceduresController::class,'store'])          ->name('procedures.store');
 
+//affichage des forms 
+
+Route::get('/formulairesoumis', [FormulaireSoumisController::class, 'historique'])->name('formulairesSoumis.historique');
+
+
 Route::post('/connexion',       [UsagersController::class,'login'])             ->name('usagers.login');
 Route::get('/connexion',        [UsagersController::class, 'showLoginForm'])    ->name('usagers.showLoginForm');
 Route::get('/deconnexion',      [UsagersController::class, 'logout'])           ->name('usagers.logout');
@@ -50,6 +55,5 @@ Route::redirect('/', '/accueil');
 Route::patch('/updatenotif/{not}', [FormulaireSoumisController::class, 'updatenotif'])
     ->name('notification.updateNot');
 
-//affichage des forms 
-Route::get('/formulaire-soumis',[FormulaireSoumisController::class, 'historique']);
+
 

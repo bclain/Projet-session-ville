@@ -96,9 +96,25 @@ class FormulaireSoumisController extends Controller
         return redirect()->back();
     }
     public function historique(Request $req)
-    {
-        return view('formulaires.AffichageForm' );
-    }
+{
+    $user_id= Session::get('usager')['id'];
+        $notifications = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+        $notificationCours = DB::table('notifications')
+        ->where('notifications.id_user',$user_id)
+        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')   
+        ->where('formulairesoumis.confirmation', '=', 0) 
+        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
+        ->select('formulairesoumis.*','usagers.*','notifications.*')
+        ->get();
+    $Forms= FormulaireSoumis::all();
+    return view('formulaires.affichageForm',compact('notifications','notificationCours'));
+}
+
 
     
 
