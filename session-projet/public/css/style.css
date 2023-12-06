@@ -51,7 +51,7 @@ footer{
   justify-content: center;
   color: white;
   position: absolute;
-  bottom: 0;
+  bottom: -90px;
   left: 50%;
   width: 100%;
   max-width: var(--maxwidth);
@@ -646,7 +646,29 @@ input, select {
   background-color: var(--lightblue);
 }
 
+.soumisaff{
+  color: black;
+  padding: 20px;
+  border-radius: 15px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.soumisaff .infos{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
 
+.soumisaff .infos-val{
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  align-items: center;
+}
 
 @media only screen and (max-width: 600px){
   section{
@@ -661,5 +683,13 @@ input, select {
   }
   .form-it, .lien-it {
     max-width: 100% ;
+  }
+  .soumisaff {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .soumisaff .infos {
+  width: 100%;
+  padding: 7px;
   }
 }

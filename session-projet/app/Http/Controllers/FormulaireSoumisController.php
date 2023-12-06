@@ -97,22 +97,31 @@ class FormulaireSoumisController extends Controller
     }
     public function historique(Request $req)
 {
-    $user_id= Session::get('usager')['id'];
-        $notifications = DB::table('notifications')
-        ->where('notifications.id_user',$user_id)
-        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')     
-        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
-        ->select('formulairesoumis.*','usagers.*','notifications.*')
-        ->get();
-        $notificationCours = DB::table('notifications')
-        ->where('notifications.id_user',$user_id)
-        ->join('formulairesoumis','notifications.id_formulaire_soumis','=','formulairesoumis.id')   
-        ->where('formulairesoumis.confirmation', '=', 0) 
-        ->join('usagers','formulairesoumis.num_employe','=','usagers.id')
-        ->select('formulairesoumis.*','usagers.*','notifications.*')
-        ->get();
-    $Forms= FormulaireSoumis::all();
-    return view('formulaires.affichageForm',compact('notifications','notificationCours'));
+    $user_id = Session::get('usager')['id'];
+    $notifications = DB::table('notifications')
+    ->where('notifications.id_user', $user_id)
+    ->join('formulairesoumis', 'notifications.id_formulaire_soumis', '=', 'formulairesoumis.id')     
+    ->join('usagers', 'formulairesoumis.num_employe', '=', 'usagers.id')
+    ->select('formulairesoumis.*', 'usagers.*', 'notifications.*')
+    ->get();
+
+    // Récupérer tous les formulaires soumis par l'utilisateur
+    $formulairesSoumis = DB::table('formulairesoumis')
+    ->join('usagers', 'formulairesoumis.num_employe', '=', 'usagers.id')
+    ->leftJoin('notifications', 'formulairesoumis.id', '=', 'notifications.id_formulaire_soumis')
+    ->where(function($query) use ($user_id) {
+        $query->where('formulairesoumis.num_employe', $user_id)
+              ->orWhere('formulairesoumis.num_superieur', $user_id);
+    })
+    ->select('formulairesoumis.*', 'usagers.*', 'notifications.*') // Sélectionnez les colonnes nécessaires
+    ->get();
+
+    // Filtrer les formulaires non confirmés si nécessaire
+   // $formulairesNonConfirmes = $formulairesSoumis->where('confirmation', 0);
+
+    // Retourner la vue avec les données
+    return view('formulaires.affichageForm', compact('notifications', 'formulairesSoumis'));
+
 }
 
 

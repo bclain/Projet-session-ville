@@ -3,17 +3,14 @@
 @section('Mid')
     <section style="form-principal">
         <div class="contain">
-            <h2>Accueil</h2>
+            <h2>Bonjour{{ Session::has('usager') ? ', ' . Session::get('usager')['nom'] : '' }}</h2>
 
             <div class="line">
                 <h4 style="">Remplir un formulaire</h4>
-                <!--Pour l admin -->
-                @if(Session::has('usagers') && Session::get('usagers')['droit_employe'] == 'o' 
-                           && Session::get('usagers')['droit_superieur'] == 'o' 
-                           && Session::get('usagers')['droit_admin'] == 'o')
-                           <button onclick="location.href='/formulaires/ajout'" class="btn-base">Ajouter un formulaire</button>                      
+                <!--Pour l'admin-->
+                @if(Session::has('usager') && Session::get('usager')['droit_admin'] == 'o')
+                    <button onclick="location.href='/formulaires/ajout'" class="btn-base">Ajouter un formulaire</button>
                 @endif
-                
             </div>
             <div class="forms-home">
                 @foreach ($formulaire as $form)
@@ -28,16 +25,12 @@
                 </a>
             @endforeach
             </div>  
-                
-           
-
+            
                 <div class="line">
                     <h4 style="">Liens procédures</h4>
 
                 <!--Pour l admin -->
-                @if(Session::has('usagers') && Session::get('usagers')['droit_employe'] == 'o' 
-                           && Session::get('usagers')['droit_superieur'] == 'o' 
-                           && Session::get('usagers')['droit_admin'] == 'o')
+                @if(Session::has('usager') && Session::get('usager')['droit_admin'] == 'o')
                             <button onclick="location.href='/creerProcedure'" class="btn-base">Ajouter une procédure</button>                        
                 @endif
 
