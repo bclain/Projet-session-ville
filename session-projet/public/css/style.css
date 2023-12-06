@@ -510,7 +510,8 @@ input, select {
 .form-it a:hover{
   border: none;
   transform: scale(1);
-
+  color: var(--dark);
+  background: white;
 }
 
 .form-it svg{
