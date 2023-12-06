@@ -32,7 +32,7 @@ Route::get('/notifications',    [NotificationsController::class, 'index'])      
 
 Route::get('/creerProcedure',   [ProceduresController::class,'create'])         ->name('procedures.create');
 Route::post('/creerProcedure',  [ProceduresController::class,'store'])          ->name('procedures.store');
-
+Route::delete('/procedures/{procedure}', [ProceduresController::class, 'destroy'])->name('procedures.destroy');
 //affichage des forms 
 
 Route::get('/formulairesoumis', [FormulaireSoumisController::class, 'historique'])->name('formulairesSoumis.historique');
@@ -44,6 +44,9 @@ Route::get('/deconnexion',      [UsagersController::class, 'logout'])           
 
 Route::get('/formulaires/ajout', [FormulairesController::class, 'create']);
 Route::get('/formulaires/{id}',  [FormulairesController::class, 'showAccidentDeTravail']);
+Route::delete('/formulaires/{formulaire}', [FormulairesController::class, 'destroy'])->name('formulaires.destroy');
+Route::post('/formulaires/add', [FormulairesController::class, 'store'])->name('formulaire.add');
+
 
 Route::post('/formulaire-soumis/soumission', [FormulaireSoumisController::class, 'store'])->name('formulaire.submit');
 Route::get('/formulaire-soumis/{id}',  [FormulaireSoumisController::class, 'show']) ->name('formulairesSoumis.show');
@@ -57,3 +60,7 @@ Route::patch('/updatenotif/{not}', [FormulaireSoumisController::class, 'updateno
 
 
 
+
+
+
+    

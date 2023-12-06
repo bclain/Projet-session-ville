@@ -47,4 +47,30 @@ class ProceduresController extends Controller
         return redirect()->route('usagers.show')
                         ->with('success', 'Procedure created successfully.');
     }
+
+    public function destroy($id)
+    {
+        // Vérifie si la session 'usager' existe
+        if(!Session::has('usager')) {
+            return redirect('/connexion');
+        }
+    
+        // Récupère les informations de l'usager depuis la session
+        $user = Session::get('usager');
+    
+        // Vérifie si l'usager est un administrateur
+        $isAdmin = isset($user['droit_admin']) && $user['droit_admin'] == 'o';
+    
+        if(!$isAdmin) {
+            // Si l'usager n'est pas administrateur, redirige vers une autre page ou affiche une erreur
+            return redirect()->route('some_route_name')->with('error', 'Accès non autorisé.');
+        }
+    
+        // La logique de suppression de la procédure
+        $procedure = Procedure::findOrFail($id);
+        $procedure->delete();
+    
+        return redirect()->route('usagers.show')
+        ->with('success', 'Procedure supprimée.');
+    }
 }

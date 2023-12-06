@@ -80,12 +80,21 @@
     @endif--}}
 
 
-    @if($not->confirmation == 0)    
+    @php
+    $user_id = Session::get('usager')['id']; // Assurez-vous que c'est la bonne clé pour obtenir l'ID de l'utilisateur
+    $is_admin = Session::get('usager')['droit_admin'] == 'o'; // Vérifiez si l'utilisateur est admin
+@endphp
+
+@if($not->confirmation == 0 && ($not->num_superieur == $user_id || $is_admin))
     <form action="{{ route('notification.updateNot', ['not' => $not->id]) }}" method="POST">
         @method('PATCH')
         @csrf
         <button type="submit" class="btn-base">J'ai pris connaissance</button>
     </form>
+@elseif($not->confirmation == 0)
+    <div class="pasvalide">
+        <h4>Ce formulaire n'est pas validé</h4>
+    </div>
 @else
     <div class="valide">
         <h4>Ce formulaire a été validé </h4>

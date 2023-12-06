@@ -66,4 +66,44 @@ class FormulairesController extends Controller
             return redirect('/connexion');
         }
     }
+
+    public function store(Request $request)
+    {
+        $user_id= Session::get('usager')['id'];
+        // Récupérez les données JSON du formulaire soumis
+        $data = $request->json()->all();
+        $userId = $request->session()->get('usager')['id'];
+        $userSupp = $request->session()->get('usager')['num_superieur'];
+    
+        // Créez une nouvelle instance de votre modèle et remplissez les champs
+        $formulaire = new Formulaire();
+        
+        $formulaire->type_forms = $data['type_formulaire'];
+        $formulaire->dg = 0; // Assurez-vous que le champ 'dg' est inclus dans votre JSON
+        $jsonData = json_encode(['fields' => $data['fields']]);
+        $formattedJson = json_decode($jsonData, true, 512, JSON_PRETTY_PRINT);
+        $formulaire->data = $formattedJson; // Utilisez le champ 'fields' pour le champ 'data' comme exemple
+    
+        // Enregistrez le formulaire soumis dans la base de données
+        $formulaire->save();
+
+        // Redirigez l'utilisateur vers la page souhaitée avec un message de succès
+        return redirect('/accueil'); //redirection apres connection
+    }
+
+    public function destroy($id)
+    {
+        if(!Session::has('usager') || Session::get('usager')['droit_admin'] != 'o') {
+            return redirect('/connexion');
+        }
+
+        $formulaire = Formulaire::find($id);
+        if (!$formulaire) {
+            return redirect()->route('usagers.show')->with('error', 'Formulaire non trouvé.');
+        }
+
+        $formulaire->delete();
+
+        return redirect()->route('usagers.show')->with('success', 'Formulaire supprimé avec succès.');
+    }
 }

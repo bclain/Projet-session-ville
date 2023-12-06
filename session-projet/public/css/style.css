@@ -431,12 +431,34 @@ input, select {
   display: flex;
   align-self: stretch;
   width: 100%;
+  align-items: center;
+  gap: 0px;
+  max-width: 400px;
+  border-radius: 5px;
+}
+
+.lien-it a{
+  display: flex;
+  align-self: stretch;
+  width: 100%;
   padding: 15px 9px;
   align-items: center;
   gap: 15px;
-  max-width: 400px;
-  border-radius: 5px;
+  background-color: white;
   border: 0.5px solid #DBDBDB;
+  color: var(--link);
+}
+
+.btn-delete{
+  color: red;
+  cursor: pointer;
+  height: 100%;
+  border: none;
+  padding: 5px;
+}
+
+.btn-delete:hover{
+  text-decoration: underline;
 }
 
 .formulaire{
@@ -466,13 +488,29 @@ input, select {
   display: flex;
   align-self: stretch;
   width: 100%;
-  max-width: 280px;
+  align-items: center;
+  gap: 0px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0.5px solid #DBDBDB;
+}
+
+.form-it a{
+  display: flex;
+  align-self: stretch;
+  width: 100%;
   padding: 15px 9px;
   align-items: center;
   gap: 15px;
-  border-radius: 5px;
-  border: 0.5px solid #DBDBDB;
-  background: linear-gradient(180deg, #E4F3FF 0%, rgba(255, 255, 255, 0.00) 100%);
+  color: var(--link);
+  background: linear-gradient(93deg, #eef4ff 47.33%, #FFF 100.39%);
+}
+
+
+.form-it a:hover{
+  border: none;
+  transform: scale(1);
+
 }
 
 .form-it svg{
@@ -497,7 +535,7 @@ input, select {
   flex-direction: column;
 }
 
-.form-group input[type=text], .form-group input[type=url] {
+.form-group input[type=text],.form-group textarea, .form-group input[type=url] {
   width: 100%;
   padding: 12px 20px;
   box-sizing: border-box;
@@ -515,6 +553,10 @@ input, select {
   padding: 40px 20px 20px 20px;
   max-width: 499px;
   margin: auto;
+}
+
+#form-build .form-group h4{
+   font-weight: 600;
 }
 
 .formulaire h3{
@@ -585,6 +627,26 @@ input, select {
     align-items: center;
 }
 
+.pasvalide{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: rgb(191, 108, 0);
+  display: flex;
+    justify-content: center;
+    width: 100%;
+    color: rgb(191, 108, 0);
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 10px ;
+    position: sticky;
+    bottom: 50px;
+    /* margin-bottom: 100px; */
+    background: #fff3e7;
+    align-items: center;
+}
+
+
 .form-build .ajout{
   display: flex;
   gap: 10px;
@@ -638,13 +700,52 @@ input, select {
 #formBuilder .form-group{
   display: flex;
   border-radius: 10px;
+  padding: 10px 5px;
   justify-content: center;
-  gap: 10px;
+  gap: 10px 30px;
   margin-bottom: 0px;
   width: 100%;
   border-bottom: var(--darklazy) 2px solid;
   background-color: var(--lightblue);
 }
+
+.form-build .checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: fit-content;
+}
+
+.form-build .checkbox-group label{
+  min-width: fit-content;
+}
+
+.form-build .checkbox-input-group {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  align-items: center;
+}
+
+.checkbox-input-group input[type=text]{
+  border: 0px;
+  padding: 4px 10px;
+}
+
+label.form-control-label {
+  min-width: fit-content;
+}
+
+.side-selector-group {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.side-selector-group input, .side-selector-group select {
+  height: fit-content;
+}
+
 
 .soumisaff{
   color: black;
