@@ -7,7 +7,13 @@
 
             <div class="line">
                 <h4 style="">Remplir un formulaire</h4>
-                <button onclick="location.href='/formulaires/ajout'" class="btn-base">Ajouter un formulaire</button>
+                <!--Pour l admin -->
+                @if(Session::has('usagers') && Session::get('usagers')['droit_employe'] == 'o' 
+                           && Session::get('usagers')['droit_superieur'] == 'o' 
+                           && Session::get('usagers')['droit_admin'] == 'o')
+                           <button onclick="location.href='/formulaires/ajout'" class="btn-base">Ajouter un formulaire</button>                      
+                @endif
+                
             </div>
             <div class="forms-home">
                 @foreach ($formulaire as $form)
@@ -27,7 +33,14 @@
 
                 <div class="line">
                     <h4 style="">Liens procédures</h4>
-                    <button onclick="location.href='/creerProcedure'" class="btn-base">Ajouter une procédure</button>
+
+                <!--Pour l admin -->
+                @if(Session::has('usagers') && Session::get('usagers')['droit_employe'] == 'o' 
+                           && Session::get('usagers')['droit_superieur'] == 'o' 
+                           && Session::get('usagers')['droit_admin'] == 'o')
+                            <button onclick="location.href='/creerProcedure'" class="btn-base">Ajouter une procédure</button>                        
+                @endif
+
                 </div>
                 <div class="liens-home">
                     @foreach ($procedures as $procedure)
