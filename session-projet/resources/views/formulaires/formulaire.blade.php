@@ -45,7 +45,7 @@
                         </div>
                     @elseif($field['type'] === 'h3')
                         <div class="form-group {{ $field['class'] ?? '' }}">
-                            <h3 class="h3">{{ $field['value'] }}</h3>
+                            <h3 class="h3">{{ $field['value'] }} {{ $field['label'] }}</h3>
                         </div>
                     @elseif($field['type'] === 'p')
                         <div class="form-group {{ $field['class'] ?? '' }}">
@@ -75,12 +75,23 @@
                             </textarea>
                         </div>
                     @elseif($field['type'] === 'conformite')
-                        <div class="form-group {{ $field['class'] ?? '' }}">
-                            <label for="{{ $field['id'] }}">{{ $field['label'] }}</label>
-                            <textarea id="{{ $field['id'] }}" name="{{ $field['label'] }}"
-                                value="{{ $field['value'] }}" class="form-control"
-                                {{ $field['required'] ?? false ? 'required' : '' }}>
-                            </textarea>
+                        <div class="form-group conformite-div {{ $field['class'] ?? '' }}">
+                            <h4 class="{{ $field['id'] }}">{{ $field['label'] }}</h4>
+                            <div>
+                                <input type="checkbox" class="conf{{ $field['id'] }}" name="{{ $field['label'] }}"
+                                value="{{ $field['value'] }}" class="form-control conf-option">
+                            <label for="{{ $field['id'] }}">Conforme</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="no{{ $field['id'] }}" name="{{ $field['label'] }}"
+                                value="{{ $field['value'] }}" class="form-control conf-option">
+                            <label for="no{{ $field['id'] }}">Non-conforme</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" class="n{{ $field['id'] }}" name="{{ $field['label'] }}"
+                                value="null" class="form-control conf-option">
+                            <label for="n{{ $field['id'] }}"> N/A </label>
+                            </div>
                         </div>
                     @elseif($field['type'] !== 'radio' && $field['type'] !== 'checkbox')
                         <div class="form-group {{ $field['class'] ?? '' }}">
@@ -121,6 +132,23 @@
                     relatedRadioContainers.forEach(container => {
                         container.style.display = checkbox.checked ? 'flex' : 'none';
                     });
+                });
+            });
+
+
+            var checkboxes = document.querySelectorAll('.conformite-div input[type="checkbox"]');
+
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('change', function() {
+                    if (checkbox.checked) {
+                        // Décocher toutes les autres cases à cocher du même groupe
+                        var groupName = checkbox.name;
+                        checkboxes.forEach(function(box) {
+                            if (box.name === groupName && box !== checkbox) {
+                                box.checked = false;
+                            }
+                        });
+                    }
                 });
             });
 
@@ -200,7 +228,24 @@
                         const fieldId = element.getAttribute("id");
 
                         if (fieldName && fieldType !== "hidden") {
-                            if (fieldType === "checkbox") {
+                            if (fieldType === "checkbox" && element.classList.contains("conf-option")) {
+                            // Vérifier si la case à cocher est cochée
+                                if (element.checked) {
+                                    // Trouver le label correspondant (texte du h4)
+                                    const h4Element = element.closest('.form-group').querySelector('h4');
+                                    const label = h4Element ? h4Element.textContent.trim() : "Label inconnu";
+
+                                    // Ajouter le champ de conformité au JSON seulement si la case est cochée
+                                    jsonData.fields.push({
+                                        dg: false,
+                                        id: fieldId,
+                                        type: "conformite",
+                                        label: label,
+                                        value: element.value,
+                                        required: false
+                                    });
+                                }
+                            else if (fieldType === "checkbox") {
                                 const isChecked = element.checked;
                                 jsonData.fields.push({
                                     type: fieldType,

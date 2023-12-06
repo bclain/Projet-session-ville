@@ -57,7 +57,7 @@
                 select.id = 'input' + fieldCount;
 
                 // Options pour le champ de sélection
-                const options = ['text', 'long texte', 'heure', 'date', 'conformité'];
+                const options = ['text', 'long texte', 'heure', 'date', 'conformite'];
                 options.forEach(function(optionText) {
                     let option = document.createElement('option');
                     option.value = optionText;

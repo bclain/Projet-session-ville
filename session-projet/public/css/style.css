@@ -746,6 +746,34 @@ label.form-control-label {
   height: fit-content;
 }
 
+.conformite-div{
+  justify-content: center;
+  padding: 15px;
+  gap: 15px 30px;
+  border: var(--darklazy) 1px solid;
+}
+
+.conformite-div h4{
+  width: 100%;
+  text-align: left;
+}
+
+.conformite-div div{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  height: fit-content;
+}
+
+.conformite-div div input{
+  height: fit-content;
+}
+
+.conformite-div label{
+  width: fit-content;
+  min-width: inherit!important;
+}
+
 
 .soumisaff{
   color: black;
