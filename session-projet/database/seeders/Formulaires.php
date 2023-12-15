@@ -16,31 +16,61 @@ class Formulaires extends Seeder
             [
                 'data' => [
                     'fields' => [
-                        ['type' => 'checkbox', 'label' => 'Ouvrir', 'value' => false, 'id' => 'ouvrir'],
-                        ['type' => 'radio', 'label' => 'Option 1', 'value' => 'option1', 'name' => 'options', 'id' => 'option1', 'class' => 'conditional'],
-                        ['type' => 'radio', 'label' => 'Option 2', 'value' => 'option2', 'name' => 'options', 'id' => 'option2', 'class' => 'conditional'],
-                        ['type' => 'text', 'label' => 'Nom', 'value' => 'John'],
-                        ['type' => 'email', 'label' => 'Email', 'value' => 'john@example.com'],
-                        ['type' => 'date', 'label' => 'Date de naissance', 'value' => '1990-01-01'],
-                        ['type' => 'textarea', 'label' => 'Commentaires', 'value' => 'Aucun commentaire'],
-                        ['type' => 'text', 'label' => 'Pays', 'value' => 'France'],
-                        ['type' => 'time', 'label' => 'Heure de rendez-vous', 'value' => '14:00'],
+                        ['type' => 'text', 'label' => 'Nom', 'value' => null, 'id' => 'nom', 'required' => true],
+                        ['type' => 'text', 'label' => 'Lieu(x) des travaux', 'value' => null, 'id' => 'lieux_travaux', 'required' => true],
+                        ['type' => 'date', 'label' => 'Date', 'value' => null, 'id' => 'date', 'required' => true],
+                        ['type' => 'time', 'label' => 'Heure', 'value' => null, 'id' => 'heure', 'required' => true],
+                        ['type' => 'checkbox', 'label' => 'EPI', 'value' => null, 'id' => 'epi', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Tenue des lieux', 'value' => null, 'id' => 'tenue_lieux', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Comportement sécuritaire', 'value' => null, 'id' => 'comportement_securitaire', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Signalisation', 'value' => null, 'id' => 'signalisation', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Fiches signalétiques', 'value' => null, 'id' => 'fiches_signaletiques', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Travaux - Excavation', 'value' => null, 'id' => 'travaux_excavation', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Espace clos', 'value' => null, 'id' => 'espace_clos', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Méthode de travail', 'value' => null, 'id' => 'methode_travail', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Autre(s) Travaux en hauteur', 'value' => null, 'id' => 'travaux_hauteur', 'required' => false],
+                        ['type' => 'section', 'label' => 'Covid 19', 'id' => 'covid_19'],
+                        ['type' => 'checkbox', 'label' => 'Respect de la distanciation', 'value' => null, 'id' => 'respect_distanciation', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Port des EPI (masque/visière)', 'value' => null, 'id' => 'port_epi', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Respect des procédures établies', 'value' => null, 'id' => 'respect_procedures', 'required' => false]
                     ]
                 ],
-                'type_forms' => 'Type 1'
+                'type_forms' => 'Grille Audit SST'
             ],
             [
                 'data' => [
                     'fields' => [
-                        ['type' => 'text', 'label' => 'Nom', 'value' => 'Jane', 'id' => '0'],
-                        ['type' => 'email', 'label' => 'Email', 'value' => 'jane@example.com', 'id' => '1'],
-                        ['type' => 'date', 'label' => 'Date d\'embauche', 'value' => '2020-01-01', 'id' => '2'],
-                        ['type' => 'textarea', 'label' => 'Description', 'value' => 'Description ici', 'id' => '3'],
-                        ['type' => 'text', 'label' => 'Ville', 'value' => 'Paris', 'id' => '4'],
-                        ['type' => 'text', 'label' => 'Code Postal', 'value' => '75000', 'id' => '5'],
+                        ['type' => 'text', 'label' => 'Numéro(s) d\'unité(s) impliqué(s) *', 'value' => null, 'id' => 'num_unites_impliques', 'required' => true],
+                        ['type' => 'text', 'label' => 'Département', 'value' => null, 'id' => 'departement', 'required' => true],
+                        ['type' => 'text', 'label' => 'Prénom et nom de l\'employé impliqué', 'value' => null, 'id' => 'nom_employe_implique', 'required' => true],
+                        ['type' => 'text', 'label' => 'Prénom et nom du supérieur immédiat', 'value' => null, 'id' => 'nom_superieur_immediat', 'required' => true],
+                        ['type' => 'text', 'label' => 'Numéro du permis de conduire de l\'employé', 'value' => null, 'id' => 'num_permis_conduire', 'required' => true],
+                        ['type' => 'section', 'label' => 'Autres véhicules impliqués (citoyen)', 'id' => 'autres_vehicules'],
+                        ['type' => 'checkbox', 'label' => 'Oui', 'value' => null, 'id' => 'oui', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'Non', 'value' => null, 'id' => 'non', 'required' => false]
                     ]
                 ],
-                'type_forms' => 'Type 2'
+                'type_forms' => "Rapport d'incidence"
+            ],
+            [
+                'data' => [
+                    'fields' => [
+                        ['type' => 'text', 'label' => 'Nom', 'value' => null, 'id' => 'nom', 'required' => true],
+                        ['type' => 'text', 'label' => 'Prénom', 'value' => null, 'id' => 'prenom', 'required' => false],
+                        ['type' => 'text', 'label' => 'Matricule', 'value' => null, 'id' => 'matricule', 'required' => false],
+                        ['type' => 'text', 'label' => 'Fonction au moment de l\'évènement', 'value' => null, 'id' => 'fonction_evenement', 'required' => false],
+                        ['type' => 'text', 'label' => 'Secteur d\'activité', 'value' => null, 'id' => 'secteur_activite', 'required' => false],
+                        ['type' => 'date', 'label' => 'Date de l\'observation', 'value' => null, 'id' => 'date_observation', 'required' => false],
+                        ['type' => 'text', 'label' => 'Heure de l\'observation', 'value' => null, 'id' => 'heure_observation', 'required' => false],
+                        ['type' => 'text', 'label' => 'Lieu', 'value' => null, 'id' => 'lieu', 'required' => false],
+                        ['type' => 'text', 'label' => 'Témoin 1', 'value' => null, 'id' => 'temoin1', 'required' => false],
+                        ['type' => 'text', 'label' => 'Témoin 2', 'value' => null, 'id' => 'temoin2', 'required' => false],
+                        ['type' => 'textarea', 'label' => 'Déscription', 'value' => null, 'id' => 'description', 'required' => false],
+                        ['type' => 'textarea', 'label' => 'Correction(s) ou amélioration(s) proposée(s):', 'value' => null, 'id' => 'corrections_ameliorations', 'required' => false],
+                        ['type' => 'checkbox', 'label' => 'J\'ai avisé mon supérieur immédiat', 'value' => null, 'id' => 'avis_superieur', 'required' => false]
+                    ]
+                ],
+                'type_forms' => "Signalement d'une situation dangereuse, d'un acte de violence ou d'un \"passé proche\""
             ],
             [
                 'data' => [
